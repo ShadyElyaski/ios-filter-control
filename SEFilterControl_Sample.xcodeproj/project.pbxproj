@@ -16,6 +16,10 @@
 		96EB294A158B9A4600053974 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EB2949158B9A4600053974 /* ViewController.m */; };
 		96EB294D158B9A4600053974 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96EB294B158B9A4600053974 /* ViewController_iPhone.xib */; };
 		96EB2950158B9A4600053974 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96EB294E158B9A4600053974 /* ViewController_iPad.xib */; };
+		96EB295C158B9A6E00053974 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 96EB295B158B9A6E00053974 /* icon.png */; };
+		96EB295E158B9A8D00053974 /* icon_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 96EB295D158B9A8D00053974 /* icon_iPad.png */; };
+		96EB296C158B9B3000053974 /* SEFilterControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EB2969158B9B3000053974 /* SEFilterControl.m */; };
+		96EB296D158B9B3000053974 /* SEFilterKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EB296B158B9B3000053974 /* SEFilterKnob.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,16 +27,22 @@
 		96EB2936158B9A4600053974 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		96EB2938158B9A4600053974 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		96EB293A158B9A4600053974 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		96EB293E158B9A4600053974 /* SEFilterControl_Sample-Info.plist */ = {isa = PBXFileReference; path = "SEFilterControl_Sample-Info.plist"; sourceTree = "<group>"; };
+		96EB293E158B9A4600053974 /* SEFilterControl_Sample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SEFilterControl_Sample-Info.plist"; sourceTree = "<group>"; };
 		96EB2940158B9A4600053974 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		96EB2942158B9A4600053974 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		96EB2944158B9A4600053974 /* SEFilterControl_Sample-Prefix.pch */ = {isa = PBXFileReference; path = "SEFilterControl_Sample-Prefix.pch"; sourceTree = "<group>"; };
-		96EB2945158B9A4600053974 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		96EB2944158B9A4600053974 /* SEFilterControl_Sample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SEFilterControl_Sample-Prefix.pch"; sourceTree = "<group>"; };
+		96EB2945158B9A4600053974 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		96EB2946158B9A4600053974 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		96EB2948158B9A4600053974 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		96EB2948158B9A4600053974 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		96EB2949158B9A4600053974 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		96EB294C158B9A4600053974 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		96EB294F158B9A4600053974 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		96EB295B158B9A6E00053974 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		96EB295D158B9A8D00053974 /* icon_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_iPad.png; path = ../icon_iPad.png; sourceTree = "<group>"; };
+		96EB2968158B9B3000053974 /* SEFilterControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEFilterControl.h; sourceTree = "<group>"; };
+		96EB2969158B9B3000053974 /* SEFilterControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEFilterControl.m; sourceTree = "<group>"; };
+		96EB296A158B9B3000053974 /* SEFilterKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEFilterKnob.h; sourceTree = "<group>"; };
+		96EB296B158B9B3000053974 /* SEFilterKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEFilterKnob.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +62,7 @@
 		96EB2927158B9A4600053974 = {
 			isa = PBXGroup;
 			children = (
+				96EB295F158B9ABF00053974 /* SEFilterControl */,
 				96EB293C158B9A4600053974 /* SEFilterControl_Sample */,
 				96EB2935158B9A4600053974 /* Frameworks */,
 				96EB2933158B9A4600053974 /* Products */,
@@ -93,12 +104,25 @@
 		96EB293D158B9A4600053974 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				96EB295B158B9A6E00053974 /* icon.png */,
+				96EB295D158B9A8D00053974 /* icon_iPad.png */,
 				96EB293E158B9A4600053974 /* SEFilterControl_Sample-Info.plist */,
 				96EB293F158B9A4600053974 /* InfoPlist.strings */,
 				96EB2942158B9A4600053974 /* main.m */,
 				96EB2944158B9A4600053974 /* SEFilterControl_Sample-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		96EB295F158B9ABF00053974 /* SEFilterControl */ = {
+			isa = PBXGroup;
+			children = (
+				96EB2968158B9B3000053974 /* SEFilterControl.h */,
+				96EB2969158B9B3000053974 /* SEFilterControl.m */,
+				96EB296A158B9B3000053974 /* SEFilterKnob.h */,
+				96EB296B158B9B3000053974 /* SEFilterKnob.m */,
+			);
+			name = SEFilterControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +179,8 @@
 				96EB2941158B9A4600053974 /* InfoPlist.strings in Resources */,
 				96EB294D158B9A4600053974 /* ViewController_iPhone.xib in Resources */,
 				96EB2950158B9A4600053974 /* ViewController_iPad.xib in Resources */,
+				96EB295C158B9A6E00053974 /* icon.png in Resources */,
+				96EB295E158B9A8D00053974 /* icon_iPad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +194,8 @@
 				96EB2943158B9A4600053974 /* main.m in Sources */,
 				96EB2947158B9A4600053974 /* AppDelegate.m in Sources */,
 				96EB294A158B9A4600053974 /* ViewController.m in Sources */,
+				96EB296C158B9B3000053974 /* SEFilterControl.m in Sources */,
+				96EB296D158B9B3000053974 /* SEFilterKnob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +280,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SEFilterControl_Sample/SEFilterControl_Sample-Prefix.pch";
 				INFOPLIST_FILE = "SEFilterControl_Sample/SEFilterControl_Sample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -263,6 +292,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SEFilterControl_Sample/SEFilterControl_Sample-Prefix.pch";
 				INFOPLIST_FILE = "SEFilterControl_Sample/SEFilterControl_Sample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -287,6 +317,7 @@
 				96EB2955158B9A4600053974 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
