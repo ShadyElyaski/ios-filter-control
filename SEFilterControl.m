@@ -110,12 +110,12 @@
     
     CGContextSaveGState(context);
     
-    //Draw White Bottom Shadow
+    //Draw Black Top Shadow
     
-    CGContextSetShadowWithColor(context, CGSizeMake(0, 1), 2.f, shadowColor);
+    CGContextSetShadowWithColor(context, CGSizeMake(0, 1.f), 2.f, shadowColor);
     
     CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:0 green:0 
-                                                               blue:0 alpha:.4f].CGColor);
+                                                               blue:0 alpha:.6f].CGColor);
     CGContextSetLineWidth(context, .5f);
     CGContextBeginPath(context);
     CGContextMoveToPoint(context, LEFT_OFFSET, rect.size.height-35);
@@ -126,7 +126,7 @@
     
     CGContextSaveGState(context);
     
-    //Draw Black Top Shadow
+    //Draw White Bottom Shadow
     
     CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:1 green:1
                                                                blue:1 alpha:1.f].CGColor);
@@ -149,6 +149,20 @@
         CGContextSetFillColorWithColor(context, self.progressColor.CGColor);
         
         CGContextFillEllipseInRect(context, CGRectMake(centerPoint.x-15, rect.size.height-42.5f, 25, 25));
+        
+        //Draw top Gradient
+        
+        CGFloat colors[12] = { 0, 0, 0, 1,
+            0, 0, 0, 0,
+                              0, 0, 0, 0};
+        CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
+        CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 3);
+        
+        CGContextSaveGState(context);
+        CGContextAddEllipseInRect(context, CGRectMake(centerPoint.x-15, rect.size.height-42.5f, 25, 25));
+        CGContextClip(context);
+        CGContextDrawLinearGradient (context, gradient, CGPointMake(0, 0), CGPointMake(0,rect.size.height), 0);
+        CGContextRestoreGState(context);
         
         //Draw White Bottom Shadow
         
