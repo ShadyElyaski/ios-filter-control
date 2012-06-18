@@ -38,7 +38,7 @@
 					<object class="IBUILabel" id="226391987">
 						<reference key="NSNextResponder" ref="397689603"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{72, 396}, {180, 21}}</string>
+						<string key="NSFrame">{{67, 396}, {180, 21}}</string>
 						<reference key="NSSuperview" ref="397689603"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="773840123"/>
@@ -56,14 +56,12 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="37384888">
-							<string key="name">Optima-Regular</string>
-							<string key="family">Optima</string>
-							<int key="traits">0</int>
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="20974372">
+							<int key="type">1</int>
 							<double key="pointSize">17</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="308797478">
-							<string key="NSName">Optima-Regular</string>
+						<object class="NSFont" key="IBUIFont" id="240370241">
+							<string key="NSName">Helvetica</string>
 							<double key="NSSize">17</double>
 							<int key="NSfFlags">16</int>
 						</object>
@@ -85,8 +83,8 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<float key="IBUIMinimumFontSize">10</float>
-						<reference key="IBUIFontDescription" ref="37384888"/>
-						<reference key="IBUIFont" ref="308797478"/>
+						<reference key="IBUIFontDescription" ref="20974372"/>
+						<reference key="IBUIFont" ref="240370241"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {768, 1004}}</string>
