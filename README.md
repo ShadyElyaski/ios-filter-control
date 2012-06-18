@@ -12,7 +12,7 @@ Inspired by National Geographics: Park Guides.
 
 # SDK Support
 
-It supports iOS 4.3 to iOS 6
+It supports iOS 4 to iOS 6
 
 # Screenshot
 
