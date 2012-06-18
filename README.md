@@ -20,6 +20,7 @@ Here's a screenshot for different variations
 
 ![My image](http://blog.elyaski.com/wp-content/uploads/2012/06/iOS-Simulator-Screen-shot-Jun-16-2012-2.38.16-AM.png)
 
+You may watch a demo video on [Youtube](http://www.youtube.com/watch?v=-lvvLnKPUk8)
 
 # Documentation 
 
