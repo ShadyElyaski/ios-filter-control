@@ -87,6 +87,10 @@
     CGContextAddEllipseInRect(context, CGRectMake(rect.origin.x+1.5f, rect.origin.y+1, 32, 32));
     CGContextClip(context);
     CGContextDrawLinearGradient (context, gradient, CGPointMake(0, 0), CGPointMake(0,rect.size.height), 0);
+    
+    CGGradientRelease(gradient);
+    CGColorSpaceRelease(baseSpace);
+    
     CGContextRestoreGState(context);
 }
 

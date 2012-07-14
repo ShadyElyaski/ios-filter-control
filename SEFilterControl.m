@@ -167,6 +167,10 @@
         CGContextAddEllipseInRect(context, CGRectMake(centerPoint.x-15, rect.size.height-42.5f, 25, 25));
         CGContextClip(context);
         CGContextDrawLinearGradient (context, gradient, CGPointMake(0, 0), CGPointMake(0,rect.size.height), 0);
+        
+        CGGradientRelease(gradient);
+        CGColorSpaceRelease(baseSpace);
+        
         CGContextRestoreGState(context);
         
         //Draw White Bottom Shadow
