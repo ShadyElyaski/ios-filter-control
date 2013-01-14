@@ -19,6 +19,7 @@
 
 }
 -(id) initWithFrame:(CGRect) frame Titles:(NSArray *) titles;
+-(id) initWithFrame:(CGRect) frame Titles:(NSArray *) titles Labels:(NSArray *) labels;
 -(void) setSelectedIndex:(int)index;
 -(void) setTitlesColor:(UIColor *)color;
 -(void) setTitlesFont:(UIFont *)font;

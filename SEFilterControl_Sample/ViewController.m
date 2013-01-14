@@ -41,6 +41,23 @@
     [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:filter];
     [filter release];
+    
+    
+    UILabel * labelRed = [[UILabel alloc] init];
+    [labelRed setText:[NSString stringWithFormat:@"Red label"]];
+    [labelRed setTextColor:[UIColor redColor]];
+    
+    UILabel * labelGreen = [[UILabel alloc] init];
+    [labelGreen setText:[NSString stringWithFormat:@"Green label"]];
+    [labelGreen setTextColor:[UIColor greenColor]];
+    
+    filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(60, 320, 200, 80) Titles:[NSArray arrayWithObjects:@"Articles", @"Latest", nil] Labels:
+              [NSArray arrayWithObjects:labelRed, labelGreen, nil]];
+    [filter setProgressColor:[UIColor magentaColor]];
+    [filter setHandlerColor:[UIColor yellowColor]];
+    [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:filter];
+    [filter release];
 }
 
 -(void)filterValueChanged:(SEFilterControl *) sender{
