@@ -100,6 +100,58 @@
     return self;
 }
 
+-(id) initWithFrame:(CGRect) frame Titles:(NSArray *) titles Labels:(NSArray *) labels{
+    if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 70)]) {
+        [self setBackgroundColor:[UIColor clearColor]];
+        titlesArr = [[NSArray alloc] initWithArray:titles];
+        
+        [self setProgressColor:[UIColor colorWithRed:103/255.f green:173/255.f blue:202/255.f alpha:1]];
+        
+        UITapGestureRecognizer *gest = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ItemSelected:)];
+        [self addGestureRecognizer:gest];
+        [gest release];
+        
+        handler = [[SEFilterKnob buttonWithType:UIButtonTypeCustom] retain];
+        [handler setFrame:CGRectMake(LEFT_OFFSET, 10, 35, 55)];
+        [handler setAdjustsImageWhenHighlighted:NO];
+        [handler setCenter:CGPointMake(handler.center.x-(handler.frame.size.width/2.f), self.frame.size.height-19.5f)];
+        [handler addTarget:self action:@selector(TouchDown:withEvent:) forControlEvents:UIControlEventTouchDown];
+        [handler addTarget:self action:@selector(TouchUp:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+        [handler addTarget:self action:@selector(TouchMove:withEvent:) forControlEvents: UIControlEventTouchDragOutside | UIControlEventTouchDragInside];
+        [self addSubview:handler];
+        
+        int i;
+        NSString *title;
+        UILabel *lbl;
+        
+        oneSlotSize = 1.f*(self.frame.size.width-LEFT_OFFSET-RIGHT_OFFSET-1)/(titlesArr.count-1);
+        for (i = 0; i < titlesArr.count; i++) {
+            title = [titlesArr objectAtIndex:i];
+            lbl = [labels objectAtIndex:i];
+            [lbl setFrame:CGRectMake(0, 0, oneSlotSize, 25)];//[[UILabel alloc]initWithFrame:CGRectMake(0, 0, oneSlotSize, 25)];
+            //            [lbl setText:title];
+            [lbl setLineBreakMode:UILineBreakModeMiddleTruncation];
+            [lbl setAdjustsFontSizeToFitWidth:YES];
+            [lbl setMinimumFontSize:8];
+            [lbl setTextAlignment:UITextAlignmentCenter];
+            [lbl setShadowOffset:CGSizeMake(0, 0.5)];
+            [lbl setBackgroundColor:[UIColor clearColor]];
+            [lbl setTag:i+50];
+            
+            if (i) {
+                [lbl setAlpha:TITLE_FADE_ALPHA];
+            }
+            
+            [lbl setCenter:[self getCenterPointForIndex:i]];
+            
+            [self addSubview:lbl];
+            //            [lbl release];
+        }
+    }
+    return self;
+}
+
+
 -(void)drawRect:(CGRect)rect{
     CGContextRef context = UIGraphicsGetCurrentContext();
     
