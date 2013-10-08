@@ -20,6 +20,7 @@
 		96EB295E158B9A8D00053974 /* icon_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 96EB295D158B9A8D00053974 /* icon_iPad.png */; };
 		96EB296C158B9B3000053974 /* SEFilterControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EB2969158B9B3000053974 /* SEFilterControl.m */; };
 		96EB296D158B9B3000053974 /* SEFilterKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EB296B158B9B3000053974 /* SEFilterKnob.m */; };
+		AB5E73C0180493B500E1C7A8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5E73BF180493B500E1C7A8 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		96EB2969158B9B3000053974 /* SEFilterControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEFilterControl.m; sourceTree = "<group>"; };
 		96EB296A158B9B3000053974 /* SEFilterKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEFilterKnob.h; sourceTree = "<group>"; };
 		96EB296B158B9B3000053974 /* SEFilterKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEFilterKnob.m; sourceTree = "<group>"; };
+		AB5E73BF180493B500E1C7A8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		96EB2927158B9A4600053974 = {
 			isa = PBXGroup;
 			children = (
+				AB5E73BF180493B500E1C7A8 /* Default-568h@2x.png */,
 				96EB295F158B9ABF00053974 /* SEFilterControl */,
 				96EB293C158B9A4600053974 /* SEFilterControl_Sample */,
 				96EB2935158B9A4600053974 /* Frameworks */,
@@ -151,7 +154,7 @@
 		96EB2929158B9A4600053974 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Shady Elyaski";
 			};
 			buildConfigurationList = 96EB292C158B9A4600053974 /* Build configuration list for PBXProject "SEFilterControl_Sample" */;
@@ -181,6 +184,7 @@
 				96EB295E158B9A8D00053974 /* icon_iPad.png in Resources */,
 				96BB7403158F184500A73386 /* viewController_iPhone.xib in Resources */,
 				96E22A9C158F1CCE00FAD5FE /* viewController_iPad.xib in Resources */,
+				AB5E73C0180493B500E1C7A8 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +245,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -259,7 +264,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -273,7 +278,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SEFilterControl_Sample/SEFilterControl_Sample-Prefix.pch";
 				INFOPLIST_FILE = "SEFilterControl_Sample/SEFilterControl_Sample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -285,7 +290,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SEFilterControl_Sample/SEFilterControl_Sample-Prefix.pch";
 				INFOPLIST_FILE = "SEFilterControl_Sample/SEFilterControl_Sample-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

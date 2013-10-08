@@ -78,10 +78,10 @@
             [lbl setFont:TITLE_FONT];
             [lbl setShadowColor:TITLE_SHADOW_COLOR];
             [lbl setTextColor:TITLE_COLOR];
-            [lbl setLineBreakMode:UILineBreakModeMiddleTruncation];
+            [lbl setLineBreakMode:NSLineBreakByTruncatingMiddle];
             [lbl setAdjustsFontSizeToFitWidth:YES];
-            [lbl setMinimumFontSize:8];
-            [lbl setTextAlignment:UITextAlignmentCenter];
+            [lbl setMinimumScaleFactor:0.5f];
+            [lbl setTextAlignment:NSTextAlignmentCenter];
             [lbl setShadowOffset:CGSizeMake(0, 1)];
             [lbl setBackgroundColor:[UIColor clearColor]];
             [lbl setTag:i+50];
@@ -130,10 +130,10 @@
             lbl = [labels objectAtIndex:i];
             [lbl setFrame:CGRectMake(0, 0, oneSlotSize, 25)];//[[UILabel alloc]initWithFrame:CGRectMake(0, 0, oneSlotSize, 25)];
             //            [lbl setText:title];
-            [lbl setLineBreakMode:UILineBreakModeMiddleTruncation];
+            [lbl setLineBreakMode:NSLineBreakByTruncatingMiddle];
             [lbl setAdjustsFontSizeToFitWidth:YES];
-            [lbl setMinimumFontSize:8];
-            [lbl setTextAlignment:UITextAlignmentCenter];
+            [lbl setMinimumScaleFactor:0.5f];
+            [lbl setTextAlignment:NSTextAlignmentCenter];
             [lbl setShadowOffset:CGSizeMake(0, 0.5)];
             [lbl setBackgroundColor:[UIColor clearColor]];
             [lbl setTag:i+50];
