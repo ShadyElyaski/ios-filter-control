@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
     s.authors      = { 'Shady Elyaski' => 'shady@elyaski.com' }
     s.homepage     = 'https://github.com/ShadyElyaski/ios-filter-control'
     s.summary      = 'An iOS Filter UIControl Subclass. Zero Graphics. Highly Customizable.'
-    s.source       = { :git => 'https://github.com/ShadyElyaski/ios-filter-control.git', :commit => '0eb53f60f060c60b0eb99a8ffad30923ddeaab74' }
+    s.source       = { :git => 'https://github.com/nicolasgoutaland/ios-filter-control.git', :head}
     s.source_files = '*.{h,m}' 
 
     s.platform = :ios
