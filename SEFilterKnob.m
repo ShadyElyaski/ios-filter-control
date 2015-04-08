@@ -38,8 +38,9 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    CGColorRef shadowColor = [UIColor colorWithRed:0 green:0 
-                                              blue:0 alpha:.4f].CGColor;
+    // Removed ugly shadow, so iOS6....
+    /*    CGColorRef shadowColor = [UIColor colorWithRed:0 green:0
+     blue:0 alpha:.4f].CGColor;*/
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
@@ -48,7 +49,8 @@
     
     CGContextSaveGState(context);
     
-    CGContextSetShadowWithColor(context, CGSizeMake(0, 7), 10.f, shadowColor);
+    // Removed ugly shadow, so iOS6....
+    //    CGContextSetShadowWithColor(context, CGSizeMake(0, 7), 10.f, shadowColor);
     
     CGContextSetStrokeColorWithColor(context, handlerColor.CGColor);
     CGContextSetLineWidth(context, 11);
@@ -70,7 +72,6 @@
     
     CGContextSaveGState(context);
     
-//    CGContextSetShadowWithColor(context, CGSizeMake(0, -4), 10.f, shadowColor);
     CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:.5 alpha:.6f].CGColor);
     CGContextSetLineWidth(context, 1);
     CGContextStrokeEllipseInRect(context, CGRectMake(rect.origin.x+12.5f, rect.origin.y+12, 10, 10));

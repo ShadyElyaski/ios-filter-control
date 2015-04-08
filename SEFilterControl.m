@@ -26,6 +26,9 @@
     CGPoint diffPoint;
     NSArray *titlesArr;
     float oneSlotSize;
+    
+    BOOL dragging;
+    CGFloat dragOffset;
 }
 
 @end
@@ -61,9 +64,21 @@
         [handler setFrame:CGRectMake(LEFT_OFFSET, 10, 35, 55)];
         [handler setAdjustsImageWhenHighlighted:NO];
         [handler setCenter:CGPointMake(handler.center.x-(handler.frame.size.width/2.f), self.frame.size.height-19.5f)];
-        [handler addTarget:self action:@selector(TouchDown:withEvent:) forControlEvents:UIControlEventTouchDown];
-        [handler addTarget:self action:@selector(TouchUp:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
-        [handler addTarget:self action:@selector(TouchMove:withEvent:) forControlEvents: UIControlEventTouchDragOutside | UIControlEventTouchDragInside];
+        
+        
+        
+        UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureDetected:)];
+        [self addGestureRecognizer:panGesture];
+        
+        /*
+         
+         [handler addTarget:self action:@selector(TouchDown:withEvent:) forControlEvents:UIControlEventTouchDown];
+         [handler addTarget:self action:@selector(TouchUp:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+         [handler addTarget:self action:@selector(TouchMove:withEvent:) forControlEvents: UIControlEventTouchDragOutside | UIControlEventTouchDragInside];
+         
+         
+         */
+        
         [self addSubview:handler];
         
         int i;
@@ -78,10 +93,10 @@
             [lbl setFont:TITLE_FONT];
             [lbl setShadowColor:TITLE_SHADOW_COLOR];
             [lbl setTextColor:TITLE_COLOR];
-            [lbl setLineBreakMode:NSLineBreakByTruncatingMiddle];
+            [lbl setLineBreakMode:UILineBreakModeMiddleTruncation];
             [lbl setAdjustsFontSizeToFitWidth:YES];
-            [lbl setMinimumScaleFactor:0.5f];
-            [lbl setTextAlignment:NSTextAlignmentCenter];
+            [lbl setMinimumFontSize:8];
+            [lbl setTextAlignment:UITextAlignmentCenter];
             [lbl setShadowOffset:CGSizeMake(0, 1)];
             [lbl setBackgroundColor:[UIColor clearColor]];
             [lbl setTag:i+50];
@@ -118,6 +133,9 @@
         [handler addTarget:self action:@selector(TouchDown:withEvent:) forControlEvents:UIControlEventTouchDown];
         [handler addTarget:self action:@selector(TouchUp:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
         [handler addTarget:self action:@selector(TouchMove:withEvent:) forControlEvents: UIControlEventTouchDragOutside | UIControlEventTouchDragInside];
+        [handler addTarget:self action:@selector(TouchCancelled:withEvent:) forControlEvents: UIControlEventTouchCancel];
+        
+        
         [self addSubview:handler];
         
         int i;
@@ -129,11 +147,11 @@
             title = [titlesArr objectAtIndex:i];
             lbl = [labels objectAtIndex:i];
             [lbl setFrame:CGRectMake(0, 0, oneSlotSize, 25)];//[[UILabel alloc]initWithFrame:CGRectMake(0, 0, oneSlotSize, 25)];
-            //            [lbl setText:title];
-            [lbl setLineBreakMode:NSLineBreakByTruncatingMiddle];
+                                                             //            [lbl setText:title];
+            [lbl setLineBreakMode:UILineBreakModeMiddleTruncation];
             [lbl setAdjustsFontSizeToFitWidth:YES];
-            [lbl setMinimumScaleFactor:0.5f];
-            [lbl setTextAlignment:NSTextAlignmentCenter];
+            [lbl setMinimumFontSize:8];
+            [lbl setTextAlignment:UITextAlignmentCenter];
             [lbl setShadowOffset:CGSizeMake(0, 0.5)];
             [lbl setBackgroundColor:[UIColor clearColor]];
             [lbl setTag:i+50];
@@ -155,7 +173,7 @@
 -(void)drawRect:(CGRect)rect{
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGColorRef shadowColor = [UIColor colorWithRed:0 green:0 
+    CGColorRef shadowColor = [UIColor colorWithRed:0 green:0
                                               blue:0 alpha:.9f].CGColor;
     
     
@@ -171,7 +189,7 @@
     
     CGContextSetShadowWithColor(context, CGSizeMake(0, 1.f), 2.f, shadowColor);
     
-    CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:0 green:0 
+    CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:0 green:0
                                                                blue:0 alpha:.6f].CGColor);
     CGContextSetLineWidth(context, .5f);
     CGContextBeginPath(context);
@@ -210,8 +228,8 @@
         //Draw top Gradient
         
         CGFloat colors[12] =   {0, 0, 0, 1,
-                                0, 0, 0, 0,
-                                0, 0, 0, 0};
+            0, 0, 0, 0,
+            0, 0, 0, 0};
         CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
         CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 3);
         
@@ -326,6 +344,57 @@
     [self animateHandlerToIndex:SelectedIndex];
     [self sendActionsForControlEvents:UIControlEventTouchUpInside];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
+}
+
+
+- (void)panGestureDetected:(UIPanGestureRecognizer *)panGesture
+{
+    CGPoint point = [panGesture locationInView:self];
+    if (panGesture.state == UIGestureRecognizerStateBegan)
+    {
+        if (CGRectContainsPoint(CGRectInset(handler.frame, -40, -40) , point))
+        {
+            dragOffset = point.x - CGRectGetMinX(handler.frame);
+            dragging = YES;
+            [self moveToPoint:CGPointMake(point.x - dragOffset, point.y)];
+        }
+        
+        return;
+    }
+    
+    // If no dragging, nothing to do
+    if (!dragging)
+        return;
+    
+    if (panGesture.state == UIGestureRecognizerStateEnded || panGesture.state == UIGestureRecognizerStateChanged)
+    {
+        [self moveToPoint:CGPointMake(point.x - dragOffset, point.y)];
+        
+        if (panGesture.state == UIGestureRecognizerStateEnded)
+        {
+            SelectedIndex = [self getSelectedTitleInPoint:handler.center];
+            [self animateHandlerToIndex:SelectedIndex];
+            [self sendActionsForControlEvents:UIControlEventTouchUpInside];
+            [self sendActionsForControlEvents:UIControlEventValueChanged];
+            dragging = NO;
+        }
+    }
+    
+}
+
+- (void)moveToPoint:(CGPoint)point
+{
+    CGPoint toPoint = CGPointMake(point.x-diffPoint.x, handler.frame.origin.y);
+    
+    toPoint = [self fixFinalPoint:toPoint];
+    
+    [handler setFrame:CGRectMake(toPoint.x, toPoint.y, handler.frame.size.width, handler.frame.size.height)];
+    
+    int selected = [self getSelectedTitleInPoint:handler.center];
+    
+    [self animateTitlesToIndex:selected];
+    
+    [self sendActionsForControlEvents:UIControlEventTouchDragInside];
 }
 
 - (void) TouchMove: (UIButton *) btn withEvent: (UIEvent *) ev {
