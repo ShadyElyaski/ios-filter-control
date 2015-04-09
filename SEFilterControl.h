@@ -11,20 +11,20 @@
 //
 //    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
-#import <UIKit/UIKit.h>
 #import "SEFilterKnob.h"
 
-@interface SEFilterControl : UIControl{
+@interface SEFilterControl : UIControl
 
-}
--(id) initWithFrame:(CGRect) frame Titles:(NSArray *) titles;
--(id) initWithFrame:(CGRect) frame Titles:(NSArray *) titles Labels:(NSArray *) labels;
--(void) setSelectedIndex:(int)index;
+/* Default constructor */
+- (id) initWithFrame:(CGRect)frame Titles:(NSArray *) titles;
+
+/* Constructor with preconfigured labels */
+- (id) initWithFrame:(CGRect)frame Titles:(NSArray *) titles Labels:(NSArray *) labels;
+
 -(void) setTitlesColor:(UIColor *)color;
 -(void) setTitlesFont:(UIFont *)font;
--(void) setHandlerColor:(UIColor *)color;
 
-@property(nonatomic, retain) UIColor *progressColor;
-@property(nonatomic, readonly) int SelectedIndex;
+@property (nonatomic, retain)           UIColor      *progressColor;
+@property (nonatomic, readonly)         NSInteger    SelectedIndex;
+@property (nonatomic, weak, readonly)   SEFilterKnob *handler;
 @end

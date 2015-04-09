@@ -6,14 +6,10 @@
 //  Copyright (c) 2012 Shady Elyaski. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @class ViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (retain, nonatomic) UIWindow *window;
-
-@property (retain, nonatomic) ViewController *viewController;
-
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) ViewController *viewController;
 @end

@@ -14,51 +14,43 @@
 #import "SEFilterKnob.h"
 
 @implementation SEFilterKnob
-@synthesize handlerColor;
-
+#pragma mark - Constructors
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
+    if (self = [super initWithFrame:frame])
+    {
+        // Shadow is enabled by default
+        _shadow = YES;
+
         // Initialization code
         [self setHandlerColor:[UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1]];
     }
+
     return self;
 }
 
--(void) setHandlerColor:(UIColor *)hc{
-    [handlerColor release];
-    handlerColor = nil;
-    
-    handlerColor = [hc retain];
-    [self setNeedsDisplay];
-}
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+#pragma mark - Drawing code
 - (void)drawRect:(CGRect)rect
 {
-    // Removed ugly shadow, so iOS6....
-    /*    CGColorRef shadowColor = [UIColor colorWithRed:0 green:0
-     blue:0 alpha:.4f].CGColor;*/
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    
-    //Draw Main Cirlce
-    
+    // Save current state before applying modifications
     CGContextSaveGState(context);
     
-    // Removed ugly shadow, so iOS6....
-    //    CGContextSetShadowWithColor(context, CGSizeMake(0, 7), 10.f, shadowColor);
-    
-    CGContextSetStrokeColorWithColor(context, handlerColor.CGColor);
+    // Draw Main Circle
+    if (_shadow)
+    {
+        CGColorRef shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.4f].CGColor;
+        CGContextSetShadowWithColor(context, CGSizeMake(0, 7), 10.f, shadowColor);
+    }
+
+    CGContextSetStrokeColorWithColor(context, _handlerColor.CGColor);
     CGContextSetLineWidth(context, 11);
     CGContextStrokeEllipseInRect(context, CGRectMake(6.5f, 6, 22, 22));
     
     CGContextRestoreGState(context);
     
-    //Draw Outer Outline
+    // Draw Outer Outline
     
     CGContextSaveGState(context);
     
@@ -68,7 +60,7 @@
     
     CGContextRestoreGState(context);
     
-    //Draw Inner Outline
+    // Draw Inner Outline
     
     CGContextSaveGState(context);
     
@@ -79,25 +71,35 @@
     CGContextRestoreGState(context);
     
     
-    CGFloat colors[8] = { 0,0, 0, 0,
-        0, 0, 0, .6};
+    CGFloat colors[8] = { 0, 0, 0,  0,
+                          0, 0, 0, .6};
+
     CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
-    CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
+    CGGradientRef gradient    = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
     
     CGContextSaveGState(context);
     CGContextAddEllipseInRect(context, CGRectMake(rect.origin.x+1.5f, rect.origin.y+1, 32, 32));
     CGContextClip(context);
     CGContextDrawLinearGradient (context, gradient, CGPointMake(0, 0), CGPointMake(0,rect.size.height), 0);
     
+    // Memory
     CGGradientRelease(gradient);
     CGColorSpaceRelease(baseSpace);
-    
+
+    // Restore previous state
     CGContextRestoreGState(context);
 }
 
--(void) dealloc{
-    [handlerColor release];
-    [super dealloc];
+#pragma mark - Setters
+- (void)setShadow:(BOOL)shadow
+{
+    _shadow = shadow;
+    [self setNeedsDisplay];
 }
 
+- (void)setHandlerColor:(UIColor *)hc
+{
+    _handlerColor = hc;
+    [self setNeedsDisplay];
+}
 @end
