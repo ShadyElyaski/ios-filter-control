@@ -13,6 +13,8 @@
 
 #import "SEFilterKnob.h"
 
+#define SEFilterControl_HEIGHT      70
+
 @interface SEFilterControl : UIControl
 
 /* Default constructor */

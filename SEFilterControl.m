@@ -30,6 +30,9 @@
     // Cached slot width
     CGFloat oneSlotSize;
 
+    // Hold titles count, to allows a control without labels
+    NSUInteger titlesCount;
+
     // Dragging management
     BOOL dragging;
     CGFloat dragOffset;
@@ -42,7 +45,7 @@
 @implementation SEFilterControl
 #pragma mark - Constructors
 - (id)initWithFrame:(CGRect) frame Titles:(NSArray *) titles{
-    if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 70)]) {
+    if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, SEFilterControl_HEIGHT)]) {
 
         // Create labels
         NSMutableArray *labels = [[NSMutableArray alloc] init];
@@ -61,7 +64,7 @@
 }
 
 - (id)initWithFrame:(CGRect) frame Titles:(NSArray *) titles Labels:(NSArray *) labels{
-    if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, 70)]) {
+    if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, SEFilterControl_HEIGHT)]) {
         // Hold labels
         self.labels = [labels copy];
 
@@ -74,6 +77,9 @@
 
 - (void)commonInits:(NSArray *)titles
 {
+    // Hold titles counts
+    titlesCount = titles.count;
+
     // Precompute slot size for futur use
     [self refreshSlotSize];
 
@@ -90,7 +96,7 @@
     NSString *title;
     UILabel *lbl;
 
-    for (NSInteger i = 0; i < titles.count; i++) {
+    for (NSInteger i = 0; i < titlesCount; i++) {
         title = [titles objectAtIndex:i];
         lbl   = [_labels objectAtIndex:i];
 
@@ -181,7 +187,7 @@
     
     
     CGPoint centerPoint;
-    for (NSInteger i = 0; i < _labels.count; i++) {
+    for (NSInteger i = 0; i < titlesCount; i++) {
         centerPoint = [self centerPointForIndex:i];
         
         //Draw Selection Circles
@@ -192,9 +198,10 @@
         
         //Draw top Gradient
         
-        CGFloat colors[12] =   {0, 0, 0, 1,
-            0, 0, 0, 0,
-            0, 0, 0, 0};
+        CGFloat colors[12] = {0, 0, 0, 1,
+                              0, 0, 0, 0,
+                              0, 0, 0, 0};
+
         CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
         CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 3);
         
@@ -221,7 +228,7 @@
         CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:0 green:0
                                                                    blue:0 alpha:.2f].CGColor);
         
-        CGContextAddArc(context,centerPoint.x-2.5,rect.size.height-30.5f,12.f,(i==_labels.count-1?28:-20)*M_PI/180,(i==0?-208:-160)*M_PI/180,1);
+        CGContextAddArc(context,centerPoint.x-2.5,rect.size.height-30.5f,12.f,(i==titlesCount-1?28:-20)*M_PI/180,(i==0?-208:-160)*M_PI/180,1);
         CGContextSetLineWidth(context, 1.f);
         CGContextDrawPath(context,kCGPathStroke);
         
@@ -281,11 +288,11 @@
     if (!dragging)
         return;
     
-    if (panGesture.state == UIGestureRecognizerStateEnded || panGesture.state == UIGestureRecognizerStateChanged)
+    if (panGesture.state == UIGestureRecognizerStateEnded || panGesture.state == UIGestureRecognizerStateChanged || panGesture.state == UIGestureRecognizerStateCancelled)
     {
         [self moveToPoint:CGPointMake(point.x - dragOffset, point.y)];
 
-        if (panGesture.state == UIGestureRecognizerStateEnded)
+        if (panGesture.state == UIGestureRecognizerStateEnded || panGesture.state == UIGestureRecognizerStateCancelled)
         {
             _SelectedIndex = [self selectedTitleInPoint:_handler.center];
             [self animateHandlerToIndex:_SelectedIndex];
@@ -327,7 +334,7 @@
 - (void)refreshSlotSize
 {
     // Compute slot size
-    oneSlotSize = 1.f * (CGRectGetWidth(self.frame) - LEFT_OFFSET-RIGHT_OFFSET-1)/(_labels.count-1);
+    oneSlotSize = 1.f * (CGRectGetWidth(self.frame) - LEFT_OFFSET-RIGHT_OFFSET-1)/(titlesCount-1);
 }
 
 - (NSInteger)selectedTitleInPoint:(CGPoint)pnt {
@@ -335,7 +342,7 @@
 }
 
 - (CGPoint)centerPointForIndex:(NSInteger)i {
-    return CGPointMake((i/(float)(_labels.count-1)) * (CGRectGetWidth(self.frame)-RIGHT_OFFSET-LEFT_OFFSET) + LEFT_OFFSET, i==0 ? CGRectGetHeight(self.frame) - KNOB_HEIGHT - TITLE_SELECTED_DISTANCE:CGRectGetHeight(self.frame) - KNOB_HEIGHT);
+    return CGPointMake((i/(float)(titlesCount-1)) * (CGRectGetWidth(self.frame)-RIGHT_OFFSET-LEFT_OFFSET) + LEFT_OFFSET, i==0 ? CGRectGetHeight(self.frame) - KNOB_HEIGHT - TITLE_SELECTED_DISTANCE:CGRectGetHeight(self.frame) - KNOB_HEIGHT);
 }
 
 - (CGPoint)fixFinalPoint:(CGPoint)pnt {

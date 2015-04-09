@@ -65,6 +65,12 @@
     filter.handler.handlerColor = [UIColor yellowColor];
     [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:filter];
+
+    filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(60, 420, 200, 80) Titles:[NSArray arrayWithObjects:@"", @"", @"", @"", nil] Labels:nil];
+    [filter setProgressColor:[UIColor purpleColor]];
+    filter.handler.handlerColor = [UIColor yellowColor];
+    [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:filter];
 }
 
 #pragma mark - Slider events
