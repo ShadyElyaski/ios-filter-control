@@ -11,6 +11,7 @@
 
 @interface ViewController ()
 // Outlets
+@property (nonatomic, weak) SEFilterControl *firstFilter;
 @property (nonatomic, weak) IBOutlet UILabel *selectedIndex;
 @end
 
@@ -34,6 +35,7 @@
     SEFilterControl *filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(10, 20, 300, 70) titles:[NSArray arrayWithObjects:@"Articles", @"News", @"Updates", @"Featured", @"Newest", @"Oldest", nil]];
     [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:filter];
+    _firstFilter = filter;
 
     filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(30, 120, 260, 60) titles:[NSArray arrayWithObjects:@"Articles", @"Latest", @"Featured", @"Oldest", nil]];
     [filter setProgressColor:[UIColor lightGrayColor]];
@@ -71,6 +73,19 @@
     filter.handler.handlerColor = [UIColor yellowColor];
     [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:filter];
+}
+
+#pragma mark - UI Actions
+- (IBAction)refreshFirst
+{
+    NSMutableArray *titles = [@[@"Articles", @"News", @"Updates", @"Featured", @"Newest", @"Oldest"] mutableCopy];
+
+    // Generate a new array
+    NSInteger count = arc4random_uniform((int)titles.count - 2);
+    for (NSInteger i=0; i<count; i++)
+        [titles removeObjectAtIndex:arc4random_uniform((int)titles.count)];
+    
+    [_firstFilter setTitles:titles];
 }
 
 #pragma mark - Slider events

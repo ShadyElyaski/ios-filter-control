@@ -13,16 +13,16 @@
 
 #import "SEFilterControl.h"
 
-#define LEFT_OFFSET                 25
-#define RIGHT_OFFSET                25
-#define TITLE_SELECTED_DISTANCE     5
-#define TITLE_FADE_ALPHA            .5f
-#define TITLE_FONT                  [UIFont fontWithName:@"Optima" size:14]
-#define TITLE_SHADOW_COLOR          [UIColor lightGrayColor]
-#define TITLE_COLOR                 [UIColor blackColor]
+#define LEFT_OFFSET                         25
+#define RIGHT_OFFSET                        25
+#define TITLE_SELECTED_DISTANCE             5
+#define TITLE_FADE_ALPHA                    .5f
+#define DEFAULT_TITLE_FONT                  [UIFont fontWithName:@"Optima" size:14]
+#define DEFAULT_TITLE_SHADOW_COLOR          [UIColor lightGrayColor]
+#define DEFAULT_TITLE_COLOR                 [UIColor blackColor]
 
-#define KNOB_HEIGHT                 55
-#define KNOB_WIDTH                  35
+#define KNOB_HEIGHT                         55
+#define KNOB_WIDTH                          35
 
 @interface SEFilterControl ()
 {
@@ -45,13 +45,15 @@
 #pragma mark - Constructors
 - (id)initWithFrame:(CGRect) frame titles:(NSArray *) titles{
     if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, SEFilterControl_HEIGHT)]) {
+        // Default control configuration
+        [self applyDefaultConfiguration];
 
         // Create labels
         NSMutableArray *labels = [[NSMutableArray alloc] init];
 
         // Create labels
-        for (NSString *title in titles)
-            [labels addObject:[self buildDefaultLabel:title]];
+        for (NSInteger i=0; i<titles.count; i++)
+            [labels addObject:[self buildDefaultLabel]];
 
         self.labels = labels;
 
@@ -64,6 +66,9 @@
 
 - (id)initWithFrame:(CGRect) frame titles:(NSArray *) titles labels:(NSArray *) labels{
     if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, SEFilterControl_HEIGHT)]) {
+        // Default control configuration
+        [self applyDefaultConfiguration];
+
         // Hold labels
         self.labels = [labels copy];
 
@@ -72,6 +77,13 @@
     }
 
     return self;
+}
+
+- (void)applyDefaultConfiguration
+{
+    _titlesFont         = DEFAULT_TITLE_FONT;
+    _titlesColor        = DEFAULT_TITLE_COLOR;
+    _titlesShadowColor  = DEFAULT_TITLE_SHADOW_COLOR;
 }
 
 - (void)commonInits:(NSArray *)titles
@@ -85,9 +97,10 @@
     [self setBackgroundColor:[UIColor clearColor]];
     [self setProgressColor:[UIColor colorWithRed:103/255.f green:173/255.f blue:202/255.f alpha:1]];
 
-    [self configureKnob];
     [self configureGestures];
     [self configureLabels:titles];
+    [self configureKnob];
+    [self moveHandlerToIndex:0 animated:NO];
 }
 
 - (void)configureLabels:(NSArray *)titles
@@ -106,11 +119,11 @@
         [lbl setTextAlignment:NSTextAlignmentCenter];
         [lbl setShadowOffset:CGSizeMake(0, 0.5)];
         [lbl setBackgroundColor:[UIColor clearColor]];
+        [lbl setText:title];
 
-        if (i) {
+        if (i)
             [lbl setAlpha:TITLE_FADE_ALPHA];
-        }
-        
+
         [lbl setCenter:[self centerPointForIndex:i]];
         
         [self addSubview:lbl];
@@ -121,12 +134,12 @@
 {
     SEFilterKnob *handler = [SEFilterKnob buttonWithType:UIButtonTypeCustom];
 
-    [handler setFrame:CGRectMake(LEFT_OFFSET, 10, KNOB_WIDTH, KNOB_HEIGHT)];
-    [handler setAdjustsImageWhenHighlighted:NO];
+    [handler setFrame:CGRectMake(LEFT_OFFSET, CGRectGetHeight(self.frame) - KNOB_HEIGHT, KNOB_WIDTH, KNOB_HEIGHT)];
     [handler setCenter:CGPointMake(handler.center.x-(CGRectGetWidth(handler.frame)/2.f), CGRectGetHeight(self.frame)-19.5f)];
+    [handler setAdjustsImageWhenHighlighted:NO];
 
     [self addSubview:handler];
-    
+
     // Hold handler
     self.handler = handler;
 }
@@ -138,6 +151,53 @@
 
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureDetected:)];
     [self addGestureRecognizer:panGesture];
+}
+
+#pragma mark - Data update
+- (void)setTitles:(NSArray *)titles
+{
+    NSMutableArray *labels = [_labels mutableCopy];
+    if (labels.count < titles.count)
+    {
+        for (NSInteger i=labels.count - 1; i<titles.count; i++)
+            [labels addObject:[self buildDefaultLabel]];
+    }
+    else if (labels.count > titles.count)
+    {
+        UILabel *label;
+        NSInteger labelsCount = labels.count;
+        for (NSInteger i=titles.count; i<labelsCount; i++)
+        {
+            // Remove label
+            label = [labels lastObject];
+            [label removeFromSuperview];
+            [labels removeLastObject];
+        }
+    }
+
+    // Update titles
+    [self setTitles:titles labels:labels];
+}
+
+- (void)setTitles:(NSArray *)titles labels:(NSArray *)labels
+{
+    // Hold labels
+    self.labels = labels;
+
+    // Hold titles counts
+    titlesCount = titles.count;
+    
+    // Precompute slot size for futur use
+    [self refreshSlotSize];
+
+    // Refresh titles
+    [self configureLabels:titles];
+
+    // Force refresh
+    [self setNeedsDisplay];
+
+    // Reset selection
+    self.selectedIndex = 0;
 }
 
 #pragma mark - Drawing code
@@ -235,10 +295,14 @@
 }
 
 #pragma mark - Animations
-- (void)animateTitlesToIndex:(NSInteger)index{
+- (void)updateTitlesToIndex:(NSInteger)index animated:(BOOL)animated{
     [_labels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger idx, BOOL *stop) {
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationBeginsFromCurrentState:YES];
+        if (animated)
+        {
+            [UIView beginAnimations:nil context:nil];
+            [UIView setAnimationBeginsFromCurrentState:YES];
+        }
+
         if (idx == index) {
             [label setCenter:CGPointMake(CGRectGetMidX(label.frame), self.frame.size.height-KNOB_HEIGHT-TITLE_SELECTED_DISTANCE)];
             [label setAlpha:1];
@@ -246,27 +310,33 @@
             [label setCenter:CGPointMake(CGRectGetMidX(label.frame), self.frame.size.height-KNOB_HEIGHT)];
             [label setAlpha:TITLE_FADE_ALPHA];
         }
-        [UIView commitAnimations];
+        
+        if (animated)
+            [UIView commitAnimations];
     }];
 }
 
-- (void)animateHandlerToIndex:(NSInteger) index{
+- (void)moveHandlerToIndex:(NSInteger) index animated:(BOOL)animated{
     CGPoint toPoint = [self centerPointForIndex:index];
     toPoint = CGPointMake(toPoint.x-(_handler.frame.size.width/2.f), _handler.frame.origin.y);
     toPoint = [self fixFinalPoint:toPoint];
     
-    [UIView beginAnimations:nil context:nil];
+    if (animated)
+        [UIView beginAnimations:nil context:nil];
+
+    // Move handler
     [_handler setFrame:CGRectMake(toPoint.x, toPoint.y, _handler.frame.size.width, _handler.frame.size.height)];
-    [UIView commitAnimations];
+    
+    if (animated)
+        [UIView commitAnimations];
 }
 
 #pragma mark - UIGestureRecognizer callbacks
 - (void)tapGestureDetected:(UITapGestureRecognizer *)tapGesture {
-    _selectedIndex = [self selectedTitleInPoint:[tapGesture locationInView:self]];
-    [self setSelectedIndex:_selectedIndex];
-    
     [self sendActionsForControlEvents:UIControlEventTouchUpInside];
-    [self sendActionsForControlEvents:UIControlEventValueChanged];
+
+    [self setSelectedIndex:[self selectedTitleInPoint:[tapGesture locationInView:self]]
+                  animated:YES];
 }
 
 - (void)panGestureDetected:(UIPanGestureRecognizer *)panGesture {
@@ -277,7 +347,7 @@
         {
             dragOffset = point.x - CGRectGetMinX(_handler.frame);
             dragging = YES;
-            [self moveToPoint:CGPointMake(point.x - dragOffset, point.y)];
+            [self moveKnobToPoint:CGPointMake(point.x - dragOffset, point.y)];
         }
 
         return;
@@ -289,43 +359,40 @@
     
     if (panGesture.state == UIGestureRecognizerStateEnded || panGesture.state == UIGestureRecognizerStateChanged || panGesture.state == UIGestureRecognizerStateCancelled)
     {
-        [self moveToPoint:CGPointMake(point.x - dragOffset, point.y)];
+        [self moveKnobToPoint:CGPointMake(point.x - dragOffset, point.y)];
 
         if (panGesture.state == UIGestureRecognizerStateEnded || panGesture.state == UIGestureRecognizerStateCancelled)
         {
-            _selectedIndex = [self selectedTitleInPoint:_handler.center];
-            [self animateHandlerToIndex:_selectedIndex];
             [self sendActionsForControlEvents:UIControlEventTouchUpInside];
-            [self sendActionsForControlEvents:UIControlEventValueChanged];
+            [self setSelectedIndex:[self selectedTitleInPoint:_handler.center]
+                          animated:YES];
             dragging = NO;
         }
     }
 }
 
-- (void)moveToPoint:(CGPoint)point
+- (void)moveKnobToPoint:(CGPoint)point
 {
     CGPoint toPoint = CGPointMake(point.x, _handler.frame.origin.y);
     
     toPoint = [self fixFinalPoint:toPoint];
     
     [_handler setFrame:CGRectMake(toPoint.x, toPoint.y, _handler.frame.size.width, _handler.frame.size.height)];
-    
-    NSInteger selectedIndex = [self selectedTitleInPoint:_handler.center];
-    
-    [self animateTitlesToIndex:selectedIndex];
-    
+
+    [self updateTitlesToIndex:[self selectedTitleInPoint:_handler.center]
+                     animated:YES];
+
     [self sendActionsForControlEvents:UIControlEventTouchDragInside];
 }
 
 #pragma mark - Utils
-- (UILabel *)buildDefaultLabel:(NSString *)title
+- (UILabel *)buildDefaultLabel
 {
     UILabel *label = [[UILabel alloc] init];
 
-    [label setText:title];
-    [label setFont:TITLE_FONT];
-    [label setShadowColor:TITLE_SHADOW_COLOR];
-    [label setTextColor:TITLE_COLOR];
+    [label setFont:_titlesFont];
+    [label setShadowColor:_titlesShadowColor];
+    [label setTextColor:_titlesColor];
 
     return label;
 }
@@ -341,7 +408,7 @@
 }
 
 - (CGPoint)centerPointForIndex:(NSInteger)i {
-    return CGPointMake((i/(float)(titlesCount-1)) * (CGRectGetWidth(self.frame)-RIGHT_OFFSET-LEFT_OFFSET) + LEFT_OFFSET, i==0 ? CGRectGetHeight(self.frame) - KNOB_HEIGHT - TITLE_SELECTED_DISTANCE:CGRectGetHeight(self.frame) - KNOB_HEIGHT);
+    return CGPointMake((i/(float)(titlesCount-1)) * (CGRectGetWidth(self.frame)-RIGHT_OFFSET-LEFT_OFFSET) + LEFT_OFFSET, i==_selectedIndex ? CGRectGetHeight(self.frame) - KNOB_HEIGHT - TITLE_SELECTED_DISTANCE:CGRectGetHeight(self.frame) - KNOB_HEIGHT);
 }
 
 - (CGPoint)fixFinalPoint:(CGPoint)pnt {
@@ -354,23 +421,35 @@
 }
 
 #pragma mark - Setters
-- (void) setSelectedIndex:(NSUInteger)index {
+- (void) setSelectedIndex:(NSUInteger)index animated:(BOOL) animated
+{
     _selectedIndex = index;
-    [self animateTitlesToIndex:index];
-    [self animateHandlerToIndex:index];
+    [self updateTitlesToIndex:index animated:animated];
+    [self moveHandlerToIndex:index animated:animated];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
-- (void) setHandlerColor:(UIColor *)color{
-    [_handler setHandlerColor:color];
+- (void) setSelectedIndex:(NSUInteger)index {
+    [self setSelectedIndex:index animated:NO];
 }
 
 - (void) setTitlesColor:(UIColor *)color{
+    _titlesColor = color;
+
     for (UILabel *label in _labels)
         [label setTextColor:color];
 }
 
+- (void) titlesShadowColor:(UIColor *)shadowColor{
+    _titlesShadowColor = shadowColor;
+
+    for (UILabel *label in _labels)
+        [label setShadowColor:shadowColor];
+}
+
 - (void) setTitlesFont:(UIFont *)font{
+    _titlesFont = font;
+
     for (UILabel *label in _labels)
         [label setFont:font];
 }

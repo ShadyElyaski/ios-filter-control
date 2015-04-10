@@ -14,16 +14,33 @@
 #import "SEFilterKnob.h"
 
 @implementation SEFilterKnob
+static NSArray *observedValues = nil;
++ (void)initialize
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        observedValues = @[@"shadow", @"handlerColor", @"shadowColor"];
+    });
+}
+
 #pragma mark - Constructors
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])
     {
-        // Shadow is enabled by default
-        _shadow = YES;
-
-        // Initialization code
-        [self setHandlerColor:[UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1]];
+        // Default configuration
+        _shadow       = YES;
+        _shadowColor  = [UIColor colorWithRed:0 green:0 blue:0 alpha:.4f];
+        _handlerColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1];
+        
+        self.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        for (NSString *keyPath in observedValues)
+        {
+            [self addObserver:self
+                   forKeyPath:keyPath
+                      options:0
+                      context:nil];
+        }
     }
 
     return self;
@@ -40,7 +57,7 @@
     // Draw Main Circle
     if (_shadow)
     {
-        CGColorRef shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.4f].CGColor;
+        CGColorRef shadowColor = _shadowColor.CGColor;
         CGContextSetShadowWithColor(context, CGSizeMake(0, 7), 10.f, shadowColor);
     }
 
@@ -90,16 +107,11 @@
     CGContextRestoreGState(context);
 }
 
-#pragma mark - Setters
-- (void)setShadow:(BOOL)shadow
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    _shadow = shadow;
-    [self setNeedsDisplay];
+    if ([observedValues containsObject:keyPath])
+        [self setNeedsDisplay];
 }
-
-- (void)setHandlerColor:(UIColor *)hc
-{
-    _handlerColor = hc;
-    [self setNeedsDisplay];
-}
+         
 @end

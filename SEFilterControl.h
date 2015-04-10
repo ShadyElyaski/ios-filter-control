@@ -23,14 +23,21 @@
 /* Constructor with preconfigured labels */
 - (id) initWithFrame:(CGRect)frame titles:(NSArray *)titles labels:(NSArray *)labels;
 
-- (void) setTitlesColor:(UIColor *)color;
-- (void) setTitlesFont:(UIFont *)font;
+/* Update titles data */
+- (void) setTitles:(NSArray *)titles;
 
+/* Update titles data, providing labels to use */
+- (void) setTitles:(NSArray *)titles labels:(NSArray *)labels;
 
+/* Set selected index, animated or not */
+- (void) setSelectedIndex:(NSUInteger)index animated:(BOOL) animated;
+
+@property (nonatomic, strong)           UIFont       *titlesFont;
+@property (nonatomic, strong)           UIColor      *titlesColor;
+@property (nonatomic, strong)           UIColor      *titlesShadowColor;
 @property (nonatomic, retain)           UIColor      *progressColor;
-@property (nonatomic, readonly)         NSUInteger   selectedIndex;
+@property (nonatomic, readonly)         NSUInteger   selectedIndex; // Not animated by default
 @property (nonatomic, weak, readonly)   SEFilterKnob *handler;
-
 
 // Old methods
 /*! @abstract Use initWithFrame:titles: instead */
@@ -40,5 +47,5 @@
 - (id) initWithFrame:(CGRect)frame Titles:(NSArray *) titles Labels:(NSArray *) labels NS_UNAVAILABLE;
 
 /*! @abstract Use selectedIndex */
-@property (nonatomic, readonly) NSInteger SelectedIndex NS_UNAVAILABLE;  // Replaced by NSUInteger selectedIndex;
+@property (nonatomic, readonly) NSInteger SelectedIndex NS_UNAVAILABLE;
 @end
