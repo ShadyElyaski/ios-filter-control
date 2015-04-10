@@ -131,6 +131,8 @@
     _titlesFont             = DEFAULT_TITLE_FONT;
     _titlesColor            = DEFAULT_TITLE_COLOR;
     _titlesShadowColor      = DEFAULT_TITLE_SHADOW_COLOR;
+
+    _continous          = NO;
 }
 
 - (void)commonInits:(NSArray *)titles
@@ -415,13 +417,23 @@
     if (panGesture.state == UIGestureRecognizerStateEnded || panGesture.state == UIGestureRecognizerStateChanged || panGesture.state == UIGestureRecognizerStateCancelled)
     {
         [self moveKnobToPoint:CGPointMake(point.x - dragOffset, point.y)];
-
+        
         if (panGesture.state == UIGestureRecognizerStateEnded || panGesture.state == UIGestureRecognizerStateCancelled)
         {
             [self sendActionsForControlEvents:UIControlEventTouchUpInside];
             [self setSelectedIndex:[self selectedTitleInPoint:_handler.center]
                           animated:YES];
             dragging = NO;
+        }
+        else if (_continous)
+        {
+            // Update selected index if continuous
+            NSUInteger currentIndex = [self selectedTitleInPoint:_handler.center];
+            if (currentIndex != _selectedIndex)
+            {
+                _selectedIndex = currentIndex;
+                [self sendActionsForControlEvents:UIControlEventValueChanged];
+            }
         }
     }
 }

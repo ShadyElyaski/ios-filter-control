@@ -33,6 +33,7 @@ IB_DESIGNABLE
 /* Set selected index, animated or not */
 - (void) setSelectedIndex:(NSUInteger)index animated:(BOOL) animated;
 
+@property (nonatomic, assign)           BOOL         continous;     // If YES, slider will send updates its times selected index is updated, without waiting for a touch Up. Defualt is NO
 @property (nonatomic, strong)           UIFont       *titlesFont;
 @property (nonatomic, strong)           UIColor      *titlesColor;
 @property (nonatomic, strong)           UIColor      *titlesShadowColor;
