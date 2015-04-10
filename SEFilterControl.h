@@ -15,6 +15,7 @@
 
 #define SEFilterControl_HEIGHT      70
 
+IB_DESIGNABLE
 @interface SEFilterControl : UIControl
 
 /* Default constructor */
@@ -35,7 +36,7 @@
 @property (nonatomic, strong)           UIFont       *titlesFont;
 @property (nonatomic, strong)           UIColor      *titlesColor;
 @property (nonatomic, strong)           UIColor      *titlesShadowColor;
-@property (nonatomic, retain)           UIColor      *progressColor;
+@property (nonatomic, retain)           IBInspectable UIColor      *progressColor;
 @property (nonatomic, readonly)         NSUInteger   selectedIndex; // Not animated by default
 @property (nonatomic, weak, readonly)   SEFilterKnob *handler;
 

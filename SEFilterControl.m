@@ -39,10 +39,54 @@
 
 @property (nonatomic, strong) NSArray      *labels;
 @property (nonatomic, weak)   SEFilterKnob *handler;
+
+// Interface builder configuration
+@property (nonatomic, assign)           IBInspectable NSInteger     ibTitlesCount;
 @end
 
 @implementation SEFilterControl
+#if TARGET_INTERFACE_BUILDER
+- (void)prepareForInterfaceBuilder
+{
+    [self configureKnob];
+}
+#endif
+
 #pragma mark - Constructors
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    if (self = [super initWithCoder:decoder])
+    {
+        // Force frame height
+        self.frame = CGRectMake(CGRectGetMinX(self.frame), CGRectGetMinY(self.frame), CGRectGetWidth(self.frame), SEFilterControl_HEIGHT);
+
+        // Default control configuration
+        [self applyDefaultConfiguration];
+
+        // Perform common inits
+        [self commonInits:@[@"", @"", @""]];
+    }
+
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    // Force frame height
+    CGRect updatedFrame = CGRectMake(CGRectGetMinX(frame), CGRectGetMinY(frame), CGRectGetWidth(frame), SEFilterControl_HEIGHT);
+
+    if (self = [super initWithFrame:updatedFrame])
+    {
+        // Default control configuration
+        [self applyDefaultConfiguration];
+
+        // Perform common inits
+        [self commonInits:@[@"", @"", @""]];
+    }
+
+    return self;
+}
+
 - (id)initWithFrame:(CGRect) frame titles:(NSArray *) titles{
     if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, SEFilterControl_HEIGHT)]) {
         // Default control configuration
@@ -81,9 +125,12 @@
 
 - (void)applyDefaultConfiguration
 {
-    _titlesFont         = DEFAULT_TITLE_FONT;
-    _titlesColor        = DEFAULT_TITLE_COLOR;
-    _titlesShadowColor  = DEFAULT_TITLE_SHADOW_COLOR;
+    self.backgroundColor    = [UIColor clearColor];
+    _progressColor          = [UIColor colorWithRed:103/255.f green:173/255.f blue:202/255.f alpha:1];
+
+    _titlesFont             = DEFAULT_TITLE_FONT;
+    _titlesColor            = DEFAULT_TITLE_COLOR;
+    _titlesShadowColor      = DEFAULT_TITLE_SHADOW_COLOR;
 }
 
 - (void)commonInits:(NSArray *)titles
@@ -93,9 +140,6 @@
 
     // Precompute slot size for futur use
     [self refreshSlotSize];
-
-    [self setBackgroundColor:[UIColor clearColor]];
-    [self setProgressColor:[UIColor colorWithRed:103/255.f green:173/255.f blue:202/255.f alpha:1]];
 
     [self configureGestures];
     [self configureLabels:titles];
@@ -202,6 +246,17 @@
 
 #pragma mark - Drawing code
 - (void)drawRect:(CGRect)rect {
+#if TARGET_INTERFACE_BUILDER
+    if (_ibTitlesCount > 1)
+        titlesCount = _ibTitlesCount;
+    else
+        titlesCount = 3;
+
+    [self refreshSlotSize];
+#endif
+
+    
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGColorRef shadowColor = [UIColor colorWithRed:0 green:0
