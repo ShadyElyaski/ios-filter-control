@@ -18,15 +18,27 @@
 @interface SEFilterControl : UIControl
 
 /* Default constructor */
-- (id) initWithFrame:(CGRect)frame Titles:(NSArray *) titles;
+- (id) initWithFrame:(CGRect)frame titles:(NSArray *)titles;
 
 /* Constructor with preconfigured labels */
-- (id) initWithFrame:(CGRect)frame Titles:(NSArray *) titles Labels:(NSArray *) labels;
+- (id) initWithFrame:(CGRect)frame titles:(NSArray *)titles labels:(NSArray *)labels;
 
--(void) setTitlesColor:(UIColor *)color;
--(void) setTitlesFont:(UIFont *)font;
+- (void) setTitlesColor:(UIColor *)color;
+- (void) setTitlesFont:(UIFont *)font;
+
 
 @property (nonatomic, retain)           UIColor      *progressColor;
-@property (nonatomic, readonly)         NSInteger    SelectedIndex;
+@property (nonatomic, readonly)         NSUInteger   selectedIndex;
 @property (nonatomic, weak, readonly)   SEFilterKnob *handler;
+
+
+// Old methods
+/*! @abstract Use initWithFrame:titles: instead */
+- (id) initWithFrame:(CGRect)frame Titles:(NSArray *) titles NS_UNAVAILABLE;
+
+/*! @abstract Use initWithFrame:titles:labels: instead */
+- (id) initWithFrame:(CGRect)frame Titles:(NSArray *) titles Labels:(NSArray *) labels NS_UNAVAILABLE;
+
+/*! @abstract Use selectedIndex */
+@property (nonatomic, readonly) NSInteger SelectedIndex NS_UNAVAILABLE;  // Replaced by NSUInteger selectedIndex;
 @end

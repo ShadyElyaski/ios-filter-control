@@ -24,7 +24,6 @@
 #define KNOB_HEIGHT                 55
 #define KNOB_WIDTH                  35
 
-
 @interface SEFilterControl ()
 {
     // Cached slot width
@@ -44,7 +43,7 @@
 
 @implementation SEFilterControl
 #pragma mark - Constructors
-- (id)initWithFrame:(CGRect) frame Titles:(NSArray *) titles{
+- (id)initWithFrame:(CGRect) frame titles:(NSArray *) titles{
     if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, SEFilterControl_HEIGHT)]) {
 
         // Create labels
@@ -63,7 +62,7 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect) frame Titles:(NSArray *) titles Labels:(NSArray *) labels{
+- (id)initWithFrame:(CGRect) frame titles:(NSArray *) titles labels:(NSArray *) labels{
     if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, SEFilterControl_HEIGHT)]) {
         // Hold labels
         self.labels = [labels copy];
@@ -263,8 +262,8 @@
 
 #pragma mark - UIGestureRecognizer callbacks
 - (void)tapGestureDetected:(UITapGestureRecognizer *)tapGesture {
-    _SelectedIndex = [self selectedTitleInPoint:[tapGesture locationInView:self]];
-    [self setSelectedIndex:_SelectedIndex];
+    _selectedIndex = [self selectedTitleInPoint:[tapGesture locationInView:self]];
+    [self setSelectedIndex:_selectedIndex];
     
     [self sendActionsForControlEvents:UIControlEventTouchUpInside];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
@@ -294,8 +293,8 @@
 
         if (panGesture.state == UIGestureRecognizerStateEnded || panGesture.state == UIGestureRecognizerStateCancelled)
         {
-            _SelectedIndex = [self selectedTitleInPoint:_handler.center];
-            [self animateHandlerToIndex:_SelectedIndex];
+            _selectedIndex = [self selectedTitleInPoint:_handler.center];
+            [self animateHandlerToIndex:_selectedIndex];
             [self sendActionsForControlEvents:UIControlEventTouchUpInside];
             [self sendActionsForControlEvents:UIControlEventValueChanged];
             dragging = NO;
@@ -355,8 +354,8 @@
 }
 
 #pragma mark - Setters
-- (void) setSelectedIndex:(NSInteger)index {
-    _SelectedIndex = index;
+- (void) setSelectedIndex:(NSUInteger)index {
+    _selectedIndex = index;
     [self animateTitlesToIndex:index];
     [self animateHandlerToIndex:index];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
