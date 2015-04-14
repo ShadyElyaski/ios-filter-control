@@ -39,9 +39,6 @@
 
 @property (nonatomic, strong) NSArray      *labels;
 @property (nonatomic, weak)   SEFilterKnob *handler;
-
-// Interface builder configuration
-@property (nonatomic, assign)           IBInspectable NSInteger     ibTitlesCount;
 @end
 
 @implementation SEFilterControl
@@ -249,16 +246,11 @@
 #pragma mark - Drawing code
 - (void)drawRect:(CGRect)rect {
 #if TARGET_INTERFACE_BUILDER
-    if (_ibTitlesCount > 1)
-        titlesCount = _ibTitlesCount;
-    else
-        titlesCount = 3;
+    [self setTitles:@[@"first", @"second", @"third"]];
 
     [self refreshSlotSize];
 #endif
 
-    
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGColorRef shadowColor = [UIColor colorWithRed:0 green:0

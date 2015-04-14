@@ -113,5 +113,16 @@ static NSArray *observedValues = nil;
     if ([observedValues containsObject:keyPath])
         [self setNeedsDisplay];
 }
-         
+
+#pragma mark - Memory
+- (void)dealloc
+{
+    // Remove bindings
+    for (NSString *key in observedValues)
+    {
+        [self removeObserver:self
+                  forKeyPath:key];
+    }
+}
+
 @end
