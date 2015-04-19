@@ -33,7 +33,7 @@ static NSArray *observedValues = nil;
         _shadowColor  = [UIColor colorWithRed:0 green:0 blue:0 alpha:.4f];
         _handlerColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1];
         
-        self.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         for (NSString *keyPath in observedValues)
         {
             [self addObserver:self

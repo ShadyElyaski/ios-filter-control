@@ -39,13 +39,18 @@
 
 @property (nonatomic, strong) NSArray      *labels;
 @property (nonatomic, weak)   SEFilterKnob *handler;
+
+@property (nonatomic, strong) IBInspectable UIColor      *handlerColor;
+@property (nonatomic, strong) IBInspectable UIColor      *handlerShadowColor;
+@property (nonatomic, assign) IBInspectable BOOL          handlerShadow;
 @end
 
 @implementation SEFilterControl
 #if TARGET_INTERFACE_BUILDER
 - (void)prepareForInterfaceBuilder
 {
-    [self configureKnob];
+    [self setTitles:@[@"", @"", @""]];
+    [self refreshSlotSize];
 }
 #endif
 
@@ -77,8 +82,13 @@
         // Default control configuration
         [self applyDefaultConfiguration];
 
+#if TARGET_INTERFACE_BUILDER
+        // Perform common inits
+        [self commonInits:@[@"First", @"Second", @"Third"]];
+#else
         // Perform common inits
         [self commonInits:@[@"", @"", @""]];
+#endif
     }
 
     return self;
@@ -129,7 +139,7 @@
     _titlesColor            = DEFAULT_TITLE_COLOR;
     _titlesShadowColor      = DEFAULT_TITLE_SHADOW_COLOR;
 
-    _continous          = NO;
+    _continous              = NO;
 }
 
 - (void)commonInits:(NSArray *)titles
@@ -246,9 +256,6 @@
 #pragma mark - Drawing code
 - (void)drawRect:(CGRect)rect {
 #if TARGET_INTERFACE_BUILDER
-    [self setTitles:@[@"first", @"second", @"third"]];
-
-    [self refreshSlotSize];
 #endif
 
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -511,6 +518,22 @@
 
     for (UILabel *label in _labels)
         [label setFont:font];
+}
+
+#pragma mark - Interface builder
+- (void) setHandlerColor:(UIColor *)handlerColor
+{
+    self.handler.handlerColor = handlerColor;
+}
+
+- (void) setHandlerShadow:(BOOL)handlerShadow
+{
+    self.handler.shadow = handlerShadow;
+}
+
+- (void) setHandlerShadowColor:(UIColor *)handlerShadowColor
+{
+    self.handler.shadowColor = handlerShadowColor;
 }
 
 @end
