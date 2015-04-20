@@ -139,7 +139,7 @@
     _titlesColor            = DEFAULT_TITLE_COLOR;
     _titlesShadowColor      = DEFAULT_TITLE_SHADOW_COLOR;
 
-    _continous              = NO;
+    _continuous             = NO;
 }
 
 - (void)commonInits:(NSArray *)titles
@@ -424,7 +424,7 @@
                           animated:YES];
             dragging = NO;
         }
-        else if (_continous)
+        else if (_continuous)
         {
             // Update selected index if continuous
             NSUInteger currentIndex = [self selectedTitleInPoint:_handler.center];
