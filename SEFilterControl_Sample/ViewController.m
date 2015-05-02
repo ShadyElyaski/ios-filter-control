@@ -25,6 +25,7 @@
     {
         // Load sample data
         _samplesData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Samples" ofType:@"plist"]];
+        self.title   = @"Samples";
     }
     
     return self;

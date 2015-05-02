@@ -13,7 +13,7 @@
 
 @interface SEFilterKnob : UIButton
 
-@property (nonatomic, strong) UIColor *handlerColor;    // Configure hanlder color
-@property (nonatomic, strong) UIColor *shadowColor;     // Configure shadow color
-@property (nonatomic, assign) BOOL shadow;              // Enable / disable shadow. Default is YES
+@property (nonatomic, strong) UIColor *handlerColor UI_APPEARANCE_SELECTOR;    // Configure handler color
+@property (nonatomic, strong) UIColor *shadowColor UI_APPEARANCE_SELECTOR;     // Configure shadow color
+@property (nonatomic, assign) BOOL shadow UI_APPEARANCE_SELECTOR;              // Enable / disable shadow. Default is YES
 @end

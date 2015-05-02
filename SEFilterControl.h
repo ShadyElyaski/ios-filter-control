@@ -33,14 +33,14 @@ IB_DESIGNABLE
 /* Set selected index, animated or not */
 - (void) setSelectedIndex:(NSUInteger)index animated:(BOOL) animated;
 
-@property (nonatomic, strong)           UIFont        *titlesFont;               // Update all titles font
-@property (nonatomic, strong)           UIColor       *titlesColor;              // Update all titles color
-@property (nonatomic, strong)           UIColor       *titlesShadowColor;        // Update all titles shadow color
-@property (nonatomic, strong, readonly) NSArray       *labels;                   // All titltes array, for a per title customization
-@property (nonatomic, readonly)         NSUInteger    selectedIndex;             // Not animated by default
-@property (nonatomic, weak, readonly)   SEFilterKnob  *handler;                  // Knob
-@property (nonatomic, assign)           IBInspectable BOOL continuous;           // If YES, slider will send updates its times selected index is updated, without waiting for a touch Up. Default is NO
-@property (nonatomic, retain)           IBInspectable UIColor *progressColor;    // Progress color
+@property (nonatomic, strong)           UIFont        *titlesFont UI_APPEARANCE_SELECTOR;               // Update all titles font
+@property (nonatomic, strong)           UIColor       *titlesColor UI_APPEARANCE_SELECTOR;              // Update all titles color
+@property (nonatomic, strong)           UIColor       *titlesShadowColor UI_APPEARANCE_SELECTOR;        // Update all titles shadow color
+@property (nonatomic, strong, readonly) NSArray       *labels;                                          // All titltes array, for a per title customization
+@property (nonatomic, readonly)         NSUInteger    selectedIndex;                                    // Not animated by default
+@property (nonatomic, weak, readonly)   SEFilterKnob  *handler;                                         // Knob
+@property (nonatomic, assign)           IBInspectable BOOL continuous;                                  // If YES, slider will send updates its times selected index is updated, without waiting for a touch Up. Default is NO
+@property (nonatomic, retain)           IBInspectable UIColor *progressColor UI_APPEARANCE_SELECTOR;    // Progress color
 
 // Old methods
 /*! @abstract Use initWithFrame:titles: instead */

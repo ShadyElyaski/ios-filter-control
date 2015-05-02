@@ -45,6 +45,7 @@
 		5C1FF9DC1AF4CA5300D89AE7 /* Sample4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sample4ViewController.h; sourceTree = "<group>"; };
 		5C1FF9DD1AF4CA5300D89AE7 /* Sample4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sample4ViewController.m; sourceTree = "<group>"; };
 		5C1FF9DE1AF4CA5300D89AE7 /* Sample4ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Sample4ViewController.xib; sourceTree = "<group>"; };
+		5C5164781AF4DEF000A08443 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		96EB2932158B9A4600053974 /* SEFilterControl_Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SEFilterControl_Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96EB2936158B9A4600053974 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		96EB2938158B9A4600053974 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -186,6 +187,7 @@
 		96EB2927158B9A4600053974 = {
 			isa = PBXGroup;
 			children = (
+				5C5164781AF4DEF000A08443 /* README.md */,
 				AB5E73BF180493B500E1C7A8 /* Default-568h@2x.png */,
 				96EB295F158B9ABF00053974 /* SEFilterControl */,
 				96EB293C158B9A4600053974 /* SEFilterControl_Sample */,
