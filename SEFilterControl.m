@@ -17,9 +17,6 @@
 #define RIGHT_OFFSET                        25
 #define TITLE_SELECTED_DISTANCE             5
 #define TITLE_FADE_ALPHA                    .5f
-#define DEFAULT_TITLE_FONT                  [UIFont fontWithName:@"Optima" size:14]
-#define DEFAULT_TITLE_SHADOW_COLOR          [UIColor lightGrayColor]
-#define DEFAULT_TITLE_COLOR                 [UIColor blackColor]
 
 #define KNOB_HEIGHT                         55
 #define KNOB_WIDTH                          35
@@ -114,7 +111,7 @@
 - (void)applyDefaultConfiguration
 {
     self.backgroundColor    = [UIColor clearColor];
-    _progressColor          = [UIColor colorWithRed:103/255.f green:173/255.f blue:202/255.f alpha:1];
+    _progressColor          = SEFilterControl_DEFAULT_PROGRESS_COLOR;
 
     _titlesFont             = DEFAULT_TITLE_FONT;
     _titlesColor            = DEFAULT_TITLE_COLOR;

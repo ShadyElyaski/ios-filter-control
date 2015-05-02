@@ -13,7 +13,12 @@
 
 #import "SEFilterKnob.h"
 
-#define SEFilterControl_HEIGHT      70
+#define SEFilterControl_HEIGHT                              70
+
+#define SEFilterControl_DEFAULT_TITLE_FONT                  [UIFont fontWithName:@"Optima" size:14]
+#define SEFilterControl_DEFAULT_TITLE_SHADOW_COLOR          [UIColor lightGrayColor]
+#define SEFilterControl_DEFAULT_TITLE_COLOR                 [UIColor blackColor]
+#define SEFilterControl_DEFAULT_PROGRESS_COLOR              [UIColor colorWithRed:103/255.f green:173/255.f blue:202/255.f alpha:1]
 
 IB_DESIGNABLE
 @interface SEFilterControl : UIControl

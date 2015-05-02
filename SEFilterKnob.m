@@ -29,9 +29,9 @@ static NSArray *observedValues = nil;
     if (self = [super initWithFrame:frame])
     {
         // Default configuration
-        _shadow       = YES;
-        _shadowColor  = [UIColor colorWithRed:0 green:0 blue:0 alpha:.4f];
-        _handlerColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1];
+        _shadow       = SEFilterKnob_DEFAULT_SHADOW;
+        _shadowColor  = SEFilterKnob_DEFAULT_SHADOW_COLOR;
+        _handlerColor = SEFilterKnob_DEFAULT_HANDLER_COLOR;
         
         self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
         for (NSString *keyPath in observedValues)
