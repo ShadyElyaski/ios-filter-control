@@ -113,9 +113,9 @@
     self.backgroundColor    = [UIColor clearColor];
     _progressColor          = SEFilterControl_DEFAULT_PROGRESS_COLOR;
 
-    _titlesFont             = DEFAULT_TITLE_FONT;
-    _titlesColor            = DEFAULT_TITLE_COLOR;
-    _titlesShadowColor      = DEFAULT_TITLE_SHADOW_COLOR;
+    _titlesFont             = SEFilterControl_DEFAULT_TITLE_FONT;
+    _titlesColor            = SEFilterControl_DEFAULT_TITLE_COLOR;
+    _titlesShadowColor      = SEFilterControl_DEFAULT_TITLE_SHADOW_COLOR;
 
     _continuous             = NO;
 }
