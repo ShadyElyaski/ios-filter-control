@@ -5,6 +5,17 @@ An iOS Filter UIControl Subclass. Zero Graphics. Highly Customizable.
 
 Inspired by National Geographics: Park Guides.
 
+# Screenshot
+ 
+Here's a screenshot for different variations
+
+![My image](http://blog.elyaski.com/wp-content/uploads/2012/06/iOS-Simulator-Screen-shot-Jun-16-2012-2.38.16-AM.png)
+
+![ScreenShot](https://raw.github.com/nicolasgoutaland/ios-filter-control/master/Assets/sample.gif)
+
+
+You may watch a demo video on [Youtube](http://www.youtube.com/watch?v=-lvvLnKPUk8)
+
 # Installation
 
 __Cocoapods:__ pod 'SEFilterControl'
@@ -19,17 +30,6 @@ __Manual__:
 
 It supports iOS 5 to iOS 8
 Live rendering in Interface builder will require Xcode 6.x
-
-# Screenshot
- 
-Here's a screenshot for different variations
-
-![My image](http://blog.elyaski.com/wp-content/uploads/2012/06/iOS-Simulator-Screen-shot-Jun-16-2012-2.38.16-AM.png)
-
-![ScreenShot](https://raw.github.com/nicolasgoutaland/ios-filter-control/master/Assets/sample.gif)
-
-
-You may watch a demo video on [Youtube](http://www.youtube.com/watch?v=-lvvLnKPUk8)
 
 # Usage
 
