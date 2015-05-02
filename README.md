@@ -21,7 +21,7 @@ It supports iOS 5 to iOS 8
 Live rendering in Interface builder will require Xcode 6.x
 
 # Screenshot
-
+ 
 Here's a screenshot for different variations
 
 ![My image](http://blog.elyaski.com/wp-content/uploads/2012/06/iOS-Simulator-Screen-shot-Jun-16-2012-2.38.16-AM.png)
@@ -91,6 +91,7 @@ __SEFilterControl__ and __SEFilterKnob__ declare __UIAppearance__ methods, allow
 # Acknowledgment
 
 Special thanks to mash, Ltd. team for their support.
+
 Thanks to Nicolas Goutaland for the updated version.
        
 License
