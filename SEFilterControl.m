@@ -62,9 +62,6 @@
         // Force frame height
         self.frame = CGRectMake(CGRectGetMinX(self.frame), CGRectGetMinY(self.frame), CGRectGetWidth(self.frame), SEFilterControl_HEIGHT);
 
-        // Default control configuration
-        [self applyDefaultConfiguration];
-
         // Perform common inits
         [self commonInits:@[@"", @"", @""]];
     }
@@ -79,9 +76,6 @@
 
     if (self = [super initWithFrame:updatedFrame])
     {
-        // Default control configuration
-        [self applyDefaultConfiguration];
-
 #if TARGET_INTERFACE_BUILDER
         // Perform common inits
         [self commonInits:@[@"First", @"Second", @"Third"]];
@@ -96,17 +90,6 @@
 
 - (id)initWithFrame:(CGRect) frame titles:(NSArray *) titles{
     if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, SEFilterControl_HEIGHT)]) {
-        // Default control configuration
-        [self applyDefaultConfiguration];
-
-        // Create labels
-        NSMutableArray *labels = [[NSMutableArray alloc] init];
-
-        // Create labels
-        for (NSInteger i=0; i<titles.count; i++)
-            [labels addObject:[self buildDefaultLabel]];
-
-        self.labels = labels;
 
         // Perform common inits
         [self commonInits:titles];
@@ -117,14 +100,12 @@
 
 - (id)initWithFrame:(CGRect) frame titles:(NSArray *) titles labels:(NSArray *) labels{
     if (self = [super initWithFrame:CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, SEFilterControl_HEIGHT)]) {
-        // Default control configuration
+
+        NSAssert2(titles.count == labels.count, @"Error, titles (%ld) and labels (%ld) must contains same objects count", titles.count, labels.count);
+
+        // Perfom common inits
         [self applyDefaultConfiguration];
-
-        // Hold labels
-        self.labels = [labels copy];
-
-        // Perfom commn inits
-        [self commonInits:titles];
+        [self commonInits:titles labels:labels];
     }
 
     return self;
@@ -144,6 +125,23 @@
 
 - (void)commonInits:(NSArray *)titles
 {
+    [self applyDefaultConfiguration];
+
+    // Create labels
+    NSMutableArray *labels = [[NSMutableArray alloc] init];
+    
+    // Create labels
+    for (NSInteger i=0; i<titles.count; i++)
+        [labels addObject:[self buildDefaultLabel]];
+    
+    [self commonInits:titles labels:labels];
+}
+
+- (void)commonInits:(NSArray *)titles labels:(NSArray *)labels
+{
+    // Hold labels
+    self.labels = labels;
+
     // Hold titles counts
     titlesCount = titles.count;
 

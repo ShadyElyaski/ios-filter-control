@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Sample3ViewController">
+            <connections>
+                <outlet property="firstFilterLabel" destination="CmP-5u-6Ad" id="Qbd-mo-ZnU"/>
+                <outlet property="secondFilterControl" destination="LRe-8A-IY9" id="qEA-wy-XXw"/>
+                <outlet property="secondFilterLabel" destination="z26-mV-tiy" id="IIV-WQ-WPL"/>
+                <outlet property="thirdFilterControl" destination="tzJ-eR-BF6" id="5um-xi-o8B"/>
+                <outlet property="thirdFilterLabel" destination="jqL-Xp-Eq3" id="uIL-Lj-yjS"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LRe-8A-IY9" customClass="SEFilterControl">
+                    <rect key="frame" x="20" y="170" width="280" height="70"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="cSP-Up-Nm3"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="continuous" value="YES"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="progressColor">
+                            <color key="value" red="0.37555009680000001" green="1" blue="0.29384585419999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="handlerColor">
+                            <color key="value" red="0.080820425265239693" green="0.25405521162349554" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="secondFilterValueChanged:" destination="-1" eventType="valueChanged" id="CNP-wW-6G5"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tzJ-eR-BF6" customClass="SEFilterControl">
+                    <rect key="frame" x="20" y="280" width="280" height="70"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="vfM-Si-Xr0"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="continuous" value="YES"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="progressColor">
+                            <color key="value" red="1" green="0.011788656139999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="handlerColor">
+                            <color key="value" red="1" green="0.91192842829999998" blue="0.1691549611" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="thirdFilterValueChanged:" destination="-1" eventType="valueChanged" id="5X2-lc-cgF"/>
+                    </connections>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqL-Xp-Eq3">
+                    <rect key="frame" x="139" y="350" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" placeholder="YES" id="jdC-g4-KQO"/>
+                        <constraint firstAttribute="width" constant="42" placeholder="YES" id="qmf-4w-j1f"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z26-mV-tiy">
+                    <rect key="frame" x="139" y="268" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" placeholder="YES" id="Pb8-zg-0qi"/>
+                        <constraint firstAttribute="height" constant="21" placeholder="YES" id="wst-Q4-EbR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CmP-5u-6Ad">
+                    <rect key="frame" x="139" y="141" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" placeholder="YES" id="DZL-9B-P2S"/>
+                        <constraint firstAttribute="height" constant="21" placeholder="YES" id="bYS-O7-Igl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="z26-mV-tiy" secondAttribute="centerX" id="1uU-8x-35N"/>
+                <constraint firstItem="LRe-8A-IY9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="2PN-nW-hYz"/>
+                <constraint firstItem="z26-mV-tiy" firstAttribute="leading" secondItem="jqL-Xp-Eq3" secondAttribute="leading" id="69l-np-vZ8"/>
+                <constraint firstItem="LRe-8A-IY9" firstAttribute="leading" secondItem="tzJ-eR-BF6" secondAttribute="leading" id="GFc-q3-PnS"/>
+                <constraint firstItem="tzJ-eR-BF6" firstAttribute="top" secondItem="LRe-8A-IY9" secondAttribute="bottom" constant="40" id="IHq-CY-oCy"/>
+                <constraint firstItem="CmP-5u-6Ad" firstAttribute="trailing" secondItem="z26-mV-tiy" secondAttribute="trailing" id="O1G-pg-M29"/>
+                <constraint firstItem="LRe-8A-IY9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="170" id="Oru-wH-4Bz"/>
+                <constraint firstAttribute="trailing" secondItem="LRe-8A-IY9" secondAttribute="trailing" constant="20" id="kD3-7v-lVo"/>
+                <constraint firstItem="CmP-5u-6Ad" firstAttribute="leading" secondItem="z26-mV-tiy" secondAttribute="leading" id="osi-hb-xQ3"/>
+                <constraint firstItem="jqL-Xp-Eq3" firstAttribute="top" secondItem="tzJ-eR-BF6" secondAttribute="bottom" id="p8k-uX-apH"/>
+                <constraint firstItem="LRe-8A-IY9" firstAttribute="trailing" secondItem="tzJ-eR-BF6" secondAttribute="trailing" id="pSb-hP-YQJ"/>
+                <constraint firstItem="z26-mV-tiy" firstAttribute="top" secondItem="LRe-8A-IY9" secondAttribute="bottom" constant="28" id="v7M-uk-uRB"/>
+                <constraint firstItem="z26-mV-tiy" firstAttribute="trailing" secondItem="jqL-Xp-Eq3" secondAttribute="trailing" id="wwR-E6-RBd"/>
+                <constraint firstItem="LRe-8A-IY9" firstAttribute="top" secondItem="CmP-5u-6Ad" secondAttribute="bottom" constant="8" id="yeN-d9-Y1l"/>
+            </constraints>
+            <point key="canvasLocation" x="542" y="540"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

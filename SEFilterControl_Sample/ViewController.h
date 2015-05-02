@@ -6,5 +6,5 @@
 //  Copyright (c) 2012 Shady Elyaski. All rights reserved.
 //
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @end

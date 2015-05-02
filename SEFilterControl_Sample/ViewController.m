@@ -7,12 +7,14 @@
 //
 
 #import "ViewController.h"
-#import "SEFilterControl.h"
+
+#define CELL_ID                 @"ViewControllerCellID"
+#define TITLE_KEY               @"title"
+#define VIEW_CONTROLLER_KEY     @"viewController"
 
 @interface ViewController ()
-// Outlets
-@property (nonatomic, weak) SEFilterControl *firstFilter;
-@property (nonatomic, weak) IBOutlet UILabel *selectedIndex;
+// Data
+@property (nonatomic, strong) NSArray *samplesData;
 @end
 
 @implementation ViewController
@@ -21,83 +23,55 @@
 {
     if (self = [super initWithNibName:@"ViewController" bundle:nil])
     {
-        
+        // Load sample data
+        _samplesData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Samples" ofType:@"plist"]];
     }
     
     return self;
 }
 
-#pragma mark - View management
-- (void)viewDidLoad
+#pragma mark - UITableViewDelegate methods
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    SEFilterControl *filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(10, 20, 300, 70) titles:[NSArray arrayWithObjects:@"Articles", @"News", @"Updates", @"Featured", @"Newest", @"Oldest", nil]];
-    [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:filter];
-    _firstFilter = filter;
-
-    filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(30, 120, 260, 60) titles:[NSArray arrayWithObjects:@"Articles", @"Latest", @"Featured", @"Oldest", nil]];
-    [filter setProgressColor:[UIColor lightGrayColor]];
-    filter.handler.handlerColor = [UIColor darkGrayColor];
-    [filter setTitlesColor:[UIColor blackColor]];
-    [filter setTitlesFont:[UIFont fontWithName:@"Didot" size:14]];
-    [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:filter];
-    
-    filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(60, 220, 200, 80) titles:[NSArray arrayWithObjects:@"Articles", @"Latest", @"Featured", @"Oldest", nil]];
-    [filter setProgressColor:[UIColor magentaColor]];
-    filter.handler.handlerColor = [UIColor yellowColor];
-    [filter setTitlesColor:[UIColor purpleColor]];
-    [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:filter];
-    
-    
-    UILabel * labelRed = [[UILabel alloc] init];
-    [labelRed setText:[NSString stringWithFormat:@"Red label"]];
-    [labelRed setTextColor:[UIColor redColor]];
-    
-    UILabel * labelGreen = [[UILabel alloc] init];
-    [labelGreen setText:[NSString stringWithFormat:@"Green label"]];
-    [labelGreen setTextColor:[UIColor greenColor]];
-    
-    filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(60, 320, 200, 80) titles:[NSArray arrayWithObjects:@"Articles", @"Latest", nil] labels:
-              [NSArray arrayWithObjects:labelRed, labelGreen, nil]];
-    [filter setProgressColor:[UIColor magentaColor]];
-    filter.handler.handlerColor = [UIColor yellowColor];
-    [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:filter];
-
-    filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(60, 420, 200, 80) titles:[NSArray arrayWithObjects:@"", @"", @"", @"", nil] labels:nil];
-    [filter setProgressColor:[UIColor purpleColor]];
-    filter.handler.handlerColor = [UIColor yellowColor];
-    [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:filter];
+    // Update cell title
+    cell.textLabel.text = [[_samplesData objectAtIndex:indexPath.row] objectForKey:TITLE_KEY];
 }
 
-#pragma mark - UI Actions
-- (IBAction)refreshFirst
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray *titles = [@[@"Articles", @"News", @"Updates", @"Featured", @"Newest", @"Oldest"] mutableCopy];
+    [self.navigationController pushViewController:[self viewControllerForIndexPath:indexPath]
+                                         animated:YES];
 
-    // Generate a new array
-    NSInteger count = arc4random_uniform((int)titles.count - 2);
-    for (NSInteger i=0; i<count; i++)
-        [titles removeObjectAtIndex:arc4random_uniform((int)titles.count)];
-    
-    [_firstFilter setTitles:titles];
+    [tableView deselectRowAtIndexPath:indexPath
+                             animated:YES];
 }
 
-#pragma mark - Slider events
--(void)filterValueChanged:(SEFilterControl *) sender
+#pragma mark - UITableViewDatasource methods
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_selectedIndex setText:[NSString stringWithFormat:@"%ld", sender.selectedIndex]];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ID];
+    if (!cell)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_ID];
+
+    return cell;
 }
 
-#pragma mark - Rotation
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return _samplesData.count;
 }
 
+#pragma mark - Utils
+- (UIViewController *)viewControllerForIndexPath:(NSIndexPath *)indexPath
+{
+    // Extract data
+    NSDictionary *data = [_samplesData objectAtIndex:indexPath.row];
+    NSString *viewControllerClassName = [data objectForKey:VIEW_CONTROLLER_KEY];
+
+    // Create VC
+    UIViewController *vc = [[NSClassFromString(viewControllerClassName) alloc] init];
+    vc.title = [data objectForKey:TITLE_KEY];
+
+    return vc;
+}
 @end

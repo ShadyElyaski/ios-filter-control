@@ -8,11 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		5C092EDA1AD686AC0056ADD4 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C092ED91AD686AC0056ADD4 /* ViewController.xib */; };
-		96E22A9C158F1CCE00FAD5FE /* ViewController~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96E22A9B158F1CCE00FAD5FE /* ViewController~ipad.xib */; };
+		5C1FF9C21AF4C87600D89AE7 /* Samples.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C1FF9C11AF4C87600D89AE7 /* Samples.plist */; };
+		5C1FF9CC1AF4C95A00D89AE7 /* Sample1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1FF9CA1AF4C95A00D89AE7 /* Sample1ViewController.m */; };
+		5C1FF9CD1AF4C95A00D89AE7 /* Sample1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C1FF9CB1AF4C95A00D89AE7 /* Sample1ViewController.xib */; };
+		5C1FF9D31AF4C9D000D89AE7 /* Sample2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1FF9D11AF4C9D000D89AE7 /* Sample2ViewController.m */; };
+		5C1FF9D41AF4C9D000D89AE7 /* Sample2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C1FF9D21AF4C9D000D89AE7 /* Sample2ViewController.xib */; };
+		5C1FF9DA1AF4CA1400D89AE7 /* Sample3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1FF9D81AF4CA1400D89AE7 /* Sample3ViewController.m */; };
+		5C1FF9DB1AF4CA1400D89AE7 /* Sample3ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C1FF9D91AF4CA1400D89AE7 /* Sample3ViewController.xib */; };
+		5C1FF9DF1AF4CA5300D89AE7 /* Sample4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1FF9DD1AF4CA5300D89AE7 /* Sample4ViewController.m */; };
+		5C1FF9E01AF4CA5300D89AE7 /* Sample4ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C1FF9DE1AF4CA5300D89AE7 /* Sample4ViewController.xib */; };
 		96EB2937158B9A4600053974 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EB2936158B9A4600053974 /* UIKit.framework */; };
 		96EB2939158B9A4600053974 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EB2938158B9A4600053974 /* Foundation.framework */; };
 		96EB293B158B9A4600053974 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96EB293A158B9A4600053974 /* CoreGraphics.framework */; };
-		96EB2941158B9A4600053974 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 96EB293F158B9A4600053974 /* InfoPlist.strings */; };
 		96EB2943158B9A4600053974 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EB2942158B9A4600053974 /* main.m */; };
 		96EB2947158B9A4600053974 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EB2946158B9A4600053974 /* AppDelegate.m */; };
 		96EB294A158B9A4600053974 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EB2949158B9A4600053974 /* ViewController.m */; };
@@ -25,13 +32,24 @@
 
 /* Begin PBXFileReference section */
 		5C092ED91AD686AC0056ADD4 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
-		96E22A9B158F1CCE00FAD5FE /* ViewController~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ViewController~ipad.xib"; sourceTree = "<group>"; };
+		5C1FF9C11AF4C87600D89AE7 /* Samples.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Samples.plist; sourceTree = "<group>"; };
+		5C1FF9C91AF4C95A00D89AE7 /* Sample1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sample1ViewController.h; sourceTree = "<group>"; };
+		5C1FF9CA1AF4C95A00D89AE7 /* Sample1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sample1ViewController.m; sourceTree = "<group>"; };
+		5C1FF9CB1AF4C95A00D89AE7 /* Sample1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Sample1ViewController.xib; sourceTree = "<group>"; };
+		5C1FF9D01AF4C9D000D89AE7 /* Sample2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sample2ViewController.h; sourceTree = "<group>"; };
+		5C1FF9D11AF4C9D000D89AE7 /* Sample2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sample2ViewController.m; sourceTree = "<group>"; };
+		5C1FF9D21AF4C9D000D89AE7 /* Sample2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Sample2ViewController.xib; sourceTree = "<group>"; };
+		5C1FF9D71AF4CA1400D89AE7 /* Sample3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sample3ViewController.h; sourceTree = "<group>"; };
+		5C1FF9D81AF4CA1400D89AE7 /* Sample3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sample3ViewController.m; sourceTree = "<group>"; };
+		5C1FF9D91AF4CA1400D89AE7 /* Sample3ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Sample3ViewController.xib; sourceTree = "<group>"; };
+		5C1FF9DC1AF4CA5300D89AE7 /* Sample4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sample4ViewController.h; sourceTree = "<group>"; };
+		5C1FF9DD1AF4CA5300D89AE7 /* Sample4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sample4ViewController.m; sourceTree = "<group>"; };
+		5C1FF9DE1AF4CA5300D89AE7 /* Sample4ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Sample4ViewController.xib; sourceTree = "<group>"; };
 		96EB2932158B9A4600053974 /* SEFilterControl_Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SEFilterControl_Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96EB2936158B9A4600053974 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		96EB2938158B9A4600053974 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		96EB293A158B9A4600053974 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		96EB293E158B9A4600053974 /* SEFilterControl_Sample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SEFilterControl_Sample-Info.plist"; sourceTree = "<group>"; };
-		96EB2940158B9A4600053974 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		96EB2942158B9A4600053974 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96EB2944158B9A4600053974 /* SEFilterControl_Sample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SEFilterControl_Sample-Prefix.pch"; sourceTree = "<group>"; };
 		96EB2945158B9A4600053974 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -61,6 +79,110 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C1FF9BE1AF4C84A00D89AE7 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5C1FF9C31AF4C8C200D89AE7 /* AppDelegate */,
+				5C1FF9C41AF4C8C800D89AE7 /* ViewControllers */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		5C1FF9BF1AF4C84E00D89AE7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5C1FF9C01AF4C85B00D89AE7 /* Data */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5C1FF9C01AF4C85B00D89AE7 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5C1FF9C11AF4C87600D89AE7 /* Samples.plist */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		5C1FF9C31AF4C8C200D89AE7 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				96EB2945158B9A4600053974 /* AppDelegate.h */,
+				96EB2946158B9A4600053974 /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		5C1FF9C41AF4C8C800D89AE7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5C1FF9C61AF4C92400D89AE7 /* Samples */,
+				5C1FF9C51AF4C8D000D89AE7 /* Root */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5C1FF9C51AF4C8D000D89AE7 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				96EB2948158B9A4600053974 /* ViewController.h */,
+				96EB2949158B9A4600053974 /* ViewController.m */,
+				5C092ED91AD686AC0056ADD4 /* ViewController.xib */,
+			);
+			name = Root;
+			sourceTree = "<group>";
+		};
+		5C1FF9C61AF4C92400D89AE7 /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+				5C1FF9C71AF4C92B00D89AE7 /* Sample1 */,
+				5C1FF9CF1AF4C9A200D89AE7 /* Sample2 */,
+				5C1FF9D51AF4C9FA00D89AE7 /* Sample3 */,
+				5C1FF9D61AF4CA0000D89AE7 /* Sample4 */,
+			);
+			name = Samples;
+			sourceTree = "<group>";
+		};
+		5C1FF9C71AF4C92B00D89AE7 /* Sample1 */ = {
+			isa = PBXGroup;
+			children = (
+				5C1FF9C91AF4C95A00D89AE7 /* Sample1ViewController.h */,
+				5C1FF9CA1AF4C95A00D89AE7 /* Sample1ViewController.m */,
+				5C1FF9CB1AF4C95A00D89AE7 /* Sample1ViewController.xib */,
+			);
+			name = Sample1;
+			sourceTree = "<group>";
+		};
+		5C1FF9CF1AF4C9A200D89AE7 /* Sample2 */ = {
+			isa = PBXGroup;
+			children = (
+				5C1FF9D01AF4C9D000D89AE7 /* Sample2ViewController.h */,
+				5C1FF9D11AF4C9D000D89AE7 /* Sample2ViewController.m */,
+				5C1FF9D21AF4C9D000D89AE7 /* Sample2ViewController.xib */,
+			);
+			name = Sample2;
+			sourceTree = "<group>";
+		};
+		5C1FF9D51AF4C9FA00D89AE7 /* Sample3 */ = {
+			isa = PBXGroup;
+			children = (
+				5C1FF9D71AF4CA1400D89AE7 /* Sample3ViewController.h */,
+				5C1FF9D81AF4CA1400D89AE7 /* Sample3ViewController.m */,
+				5C1FF9D91AF4CA1400D89AE7 /* Sample3ViewController.xib */,
+			);
+			name = Sample3;
+			sourceTree = "<group>";
+		};
+		5C1FF9D61AF4CA0000D89AE7 /* Sample4 */ = {
+			isa = PBXGroup;
+			children = (
+				5C1FF9DC1AF4CA5300D89AE7 /* Sample4ViewController.h */,
+				5C1FF9DD1AF4CA5300D89AE7 /* Sample4ViewController.m */,
+				5C1FF9DE1AF4CA5300D89AE7 /* Sample4ViewController.xib */,
+			);
+			name = Sample4;
+			sourceTree = "<group>";
+		};
 		96EB2927158B9A4600053974 = {
 			isa = PBXGroup;
 			children = (
@@ -93,12 +215,8 @@
 		96EB293C158B9A4600053974 /* SEFilterControl_Sample */ = {
 			isa = PBXGroup;
 			children = (
-				96EB2945158B9A4600053974 /* AppDelegate.h */,
-				96EB2946158B9A4600053974 /* AppDelegate.m */,
-				96EB2948158B9A4600053974 /* ViewController.h */,
-				96EB2949158B9A4600053974 /* ViewController.m */,
-				5C092ED91AD686AC0056ADD4 /* ViewController.xib */,
-				96E22A9B158F1CCE00FAD5FE /* ViewController~ipad.xib */,
+				5C1FF9BE1AF4C84A00D89AE7 /* Classes */,
+				5C1FF9BF1AF4C84E00D89AE7 /* Resources */,
 				96EB293D158B9A4600053974 /* Supporting Files */,
 			);
 			path = SEFilterControl_Sample;
@@ -110,7 +228,6 @@
 				96EB295B158B9A6E00053974 /* icon.png */,
 				96EB295D158B9A8D00053974 /* icon_iPad.png */,
 				96EB293E158B9A4600053974 /* SEFilterControl_Sample-Info.plist */,
-				96EB293F158B9A4600053974 /* InfoPlist.strings */,
 				96EB2942158B9A4600053974 /* main.m */,
 				96EB2944158B9A4600053974 /* SEFilterControl_Sample-Prefix.pch */,
 			);
@@ -179,12 +296,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96EB2941158B9A4600053974 /* InfoPlist.strings in Resources */,
+				5C1FF9C21AF4C87600D89AE7 /* Samples.plist in Resources */,
+				5C1FF9D41AF4C9D000D89AE7 /* Sample2ViewController.xib in Resources */,
 				96EB295C158B9A6E00053974 /* icon.png in Resources */,
+				5C1FF9CD1AF4C95A00D89AE7 /* Sample1ViewController.xib in Resources */,
 				96EB295E158B9A8D00053974 /* icon_iPad.png in Resources */,
-				96E22A9C158F1CCE00FAD5FE /* ViewController~ipad.xib in Resources */,
 				5C092EDA1AD686AC0056ADD4 /* ViewController.xib in Resources */,
+				5C1FF9DB1AF4CA1400D89AE7 /* Sample3ViewController.xib in Resources */,
 				AB5E73C0180493B500E1C7A8 /* Default-568h@2x.png in Resources */,
+				5C1FF9E01AF4CA5300D89AE7 /* Sample4ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,26 +315,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C1FF9CC1AF4C95A00D89AE7 /* Sample1ViewController.m in Sources */,
+				5C1FF9DF1AF4CA5300D89AE7 /* Sample4ViewController.m in Sources */,
 				96EB2943158B9A4600053974 /* main.m in Sources */,
 				96EB2947158B9A4600053974 /* AppDelegate.m in Sources */,
 				96EB294A158B9A4600053974 /* ViewController.m in Sources */,
+				5C1FF9D31AF4C9D000D89AE7 /* Sample2ViewController.m in Sources */,
 				96EB296C158B9B3000053974 /* SEFilterControl.m in Sources */,
+				5C1FF9DA1AF4CA1400D89AE7 /* Sample3ViewController.m in Sources */,
 				96EB296D158B9B3000053974 /* SEFilterKnob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		96EB293F158B9A4600053974 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				96EB2940158B9A4600053974 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		96EB2951158B9A4600053974 /* Debug */ = {
