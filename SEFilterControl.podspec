@@ -9,6 +9,4 @@ Pod::Spec.new do |s|
     s.source       = { :git => 'https://github.com/ShadyElyaski/ios-filter-control.git', :tag => "#{s.version}"}
     s.source_files = '*.{h,m}' 
     s.requires_arc = true
-
-    s.platform = :ios
 end
