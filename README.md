@@ -5,79 +5,96 @@ An iOS Filter UIControl Subclass. Zero Graphics. Highly Customizable.
 
 Inspired by National Geographics: Park Guides.
 
-# Installation
-
-1. In your XCode Project, take the *SEFilterControl.h and .m* & *SEFilterKnob.h and .m* from ios-filter-control folder and drag them into your project. 
-2. Start using this new UIControl Subclass!
-
-# SDK Support
-
-It supports iOS 4 to iOS 6
-
 # Screenshot
-
+ 
 Here's a screenshot for different variations
+
+![ScreenShot](https://raw.github.com/nicolasgoutaland/ios-filter-control/master/Assets/sample.gif)
 
 ![My image](http://blog.elyaski.com/wp-content/uploads/2012/06/iOS-Simulator-Screen-shot-Jun-16-2012-2.38.16-AM.png)
 
 You may watch a demo video on [Youtube](http://www.youtube.com/watch?v=-lvvLnKPUk8)
 
-# Documentation 
+# Installation
 
-The class is not very well documented. I tried documenting drawing code as much as I could.
+__Cocoapods:__ pod 'SEFilterControl'
 
-There are sample codes that illustrate various parameters.
+__Manual__:
 
+1. In your XCode Project, take the *SEFilterControl.h and .m* & *SEFilterKnob.h and .m* from ios-filter-control folder and drag them into your project. 
+
+2. Start using this new UIControl Subclass!
+
+# SDK Support
+
+It supports iOS 5 to iOS 8
+Live rendering in Interface builder will require Xcode 6.x
 
 # Usage
 
 ## Creating your filter
-
+### By Code
 Somewhere, for example in your viewDidLoad, alloc and init the filter UIControl:
 
-    SEFilterControl *filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(10, 20, 300, 70) Titles:[NSArray arrayWithObjects:@"Articles", @"News", @"Updates", @"Featured", @"Newest", @"Oldest", nil]];
+```
+SEFilterControl *filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(10, 20, 300, 70) Titles:[NSArray arrayWithObjects:@"Articles", @"News", @"Updates", @"Featured", @"Newest", @"Oldest", nil]];
+```
 
 This initializes our Filter Control using CGRect and Titles Array of NSStrings.
 
-*Note That height of the control is predifined as 70 and can't be changed*
+*Note That height of the control is predefined as 70 and can't be changed* Use __SEFilterControl_HEIGHT__ const for reference.
 
 Then, add target for Value Change Event handling:
+```
+[filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
+```
+Don't forget to implement the handler we specified later:
 
-	[filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
-
-Don't forget to impelment the handler we specified later:
-
-	-(void)filterValueChanged:(SEFilterControl *) sender{
-    	NSLog(@"%@", [NSString stringWithFormat:@"%d", sender.SelectedIndex]);
-	}
+```
+-(void)filterValueChanged:(SEFilterControl *) sender{
+	NSLog(@"%@", [NSString stringWithFormat:@"%d", sender.SelectedIndex]);
+}
+```
 	
-Adding to your UIView & releasing the object:
+Adding to your UIView:
 
+```
 	[self.view addSubview:filter];
-    [filter release];
+```
 
-## Customizing your filter
+### Via Interface builder
+Add a new UIView to your xib, and update its class to __SEFilterControl__.
+Bind a UIAction to the __valueChanged__ event of your control.
+Enjoy ;)
 
-To change the track color:
+## Configuration
+### Filter
+| Property        | Effect | Default value |
+|:-------------:|-------------|-----|-----|
+| **progressColor** | Progress track color  | SEFilterControl_DEFAULT_PROGRESS_COLOR |
+| **titlesFont** | Configure all titles font  | SEFilterControl_DEFAULT_TITLE_FONT |
+| **titlesColor** | Configure all titles color  | SEFilterControl_DEFAULT_TITLE_COLOR |
+| **titlesShadowColor** | Configure all titles shadow color  | SEFilterControl_DEFAULT_TITLE_SHADOW_COLOR |
 
-	[filter setProgressColor:[UIColor lightGrayColor]];
+### Knob
+| Property        | Effect | Default value |
+|:-------------:|-------------| -----|---|
+| **handlerColor** | Configure knob color  | SEFilterKnob_DEFAULT_HANDLER_COLOR |
+| **shadowColor** | Configure knob shadow color  | SEFilterKnob_DEFAULT_SHADOW_COLOR |
+| **shadow** | Enable / sisable shadow  | SEFilterKnob_DEFAULT_SHADOW |
 
-To change the handler color:
+### Continuous mode
+If __continuous__ is set to YES, filter will generate __valueChanged__ events will user is dragging the knb. If NO, an event will be sent once knob released.
 
-	[filter setHandlerColor:[UIColor darkGrayColor]];
 
-To change the Titles text color:
-
-	[filter setTitlesColor:[UIColor blackColor]];
-
-To change the Titles text font:
-
-	[filter setTitlesFont:[UIFont fontWithName:@"Didot" size:14]];
-
+### UIAppearance
+__SEFilterControl__ and __SEFilterKnob__ declare __UIAppearance__ methods, allowing you to style all instances at a time.
 
 # Acknowledgment
 
 Special thanks to mash, Ltd. team for their support.
+
+Thanks to Nicolas Goutaland for the updated version.
        
 License
 -------

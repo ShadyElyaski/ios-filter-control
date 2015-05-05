@@ -7,81 +7,72 @@
 //
 
 #import "ViewController.h"
-#import "SEFilterControl.h"
+
+#define CELL_ID                 @"ViewControllerCellID"
+#define TITLE_KEY               @"title"
+#define VIEW_CONTROLLER_KEY     @"viewController"
 
 @interface ViewController ()
-
+// Data
+@property (nonatomic, strong) NSArray *samplesData;
 @end
 
 @implementation ViewController
-@synthesize selectedIndex;
-
-- (void)viewDidLoad
+#pragma mark - Constructor
+- (id)init
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    SEFilterControl *filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(10, 20, 300, 70) Titles:[NSArray arrayWithObjects:@"Articles", @"News", @"Updates", @"Featured", @"Newest", @"Oldest", nil]];
-    [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:filter];
-    [filter release];
+    if (self = [super initWithNibName:@"ViewController" bundle:nil])
+    {
+        // Load sample data
+        _samplesData = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Samples" ofType:@"plist"]];
+        self.title   = @"Samples";
+    }
     
-    filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(30, 120, 260, 60) Titles:[NSArray arrayWithObjects:@"Articles", @"Latest", @"Featured", @"Oldest", nil]];
-    [filter setProgressColor:[UIColor lightGrayColor]];
-    [filter setHandlerColor:[UIColor darkGrayColor]];
-    [filter setTitlesColor:[UIColor blackColor]];
-    [filter setTitlesFont:[UIFont fontWithName:@"Didot" size:14]];
-    [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:filter];
-    [filter release];
-    
-    filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(60, 220, 200, 80) Titles:[NSArray arrayWithObjects:@"Articles", @"Latest", @"Featured", @"Oldest", nil]];
-    [filter setProgressColor:[UIColor magentaColor]];
-    [filter setHandlerColor:[UIColor yellowColor]];
-    [filter setTitlesColor:[UIColor purpleColor]];
-    [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:filter];
-    [filter release];
-    
-    
-    UILabel * labelRed = [[UILabel alloc] init];
-    [labelRed setText:[NSString stringWithFormat:@"Red label"]];
-    [labelRed setTextColor:[UIColor redColor]];
-    
-    UILabel * labelGreen = [[UILabel alloc] init];
-    [labelGreen setText:[NSString stringWithFormat:@"Green label"]];
-    [labelGreen setTextColor:[UIColor greenColor]];
-    
-    filter = [[SEFilterControl alloc]initWithFrame:CGRectMake(60, 320, 200, 80) Titles:[NSArray arrayWithObjects:@"Articles", @"Latest", nil] Labels:
-              [NSArray arrayWithObjects:labelRed, labelGreen, nil]];
-    [filter setProgressColor:[UIColor magentaColor]];
-    [filter setHandlerColor:[UIColor yellowColor]];
-    [filter addTarget:self action:@selector(filterValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:filter];
-    [filter release];
+    return self;
 }
 
--(void)filterValueChanged:(SEFilterControl *) sender{
-    [selectedIndex setText:[NSString stringWithFormat:@"%d", sender.SelectedIndex]];
-}
-
-
-- (void)didReceiveMemoryWarning
+#pragma mark - UITableViewDelegate methods
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Update cell title
+    cell.textLabel.text = [[_samplesData objectAtIndex:indexPath.row] objectForKey:TITLE_KEY];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    [self.navigationController pushViewController:[self viewControllerForIndexPath:indexPath]
+                                         animated:YES];
+
+    [tableView deselectRowAtIndexPath:indexPath
+                             animated:YES];
 }
 
-- (void)dealloc {
-    [selectedIndex release];
-    [super dealloc];
+#pragma mark - UITableViewDatasource methods
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ID];
+    if (!cell)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_ID];
+
+    return cell;
 }
-- (void)viewDidUnload {
-    [self setSelectedIndex:nil];
-    [super viewDidUnload];
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _samplesData.count;
+}
+
+#pragma mark - Utils
+- (UIViewController *)viewControllerForIndexPath:(NSIndexPath *)indexPath
+{
+    // Extract data
+    NSDictionary *data = [_samplesData objectAtIndex:indexPath.row];
+    NSString *viewControllerClassName = [data objectForKey:VIEW_CONTROLLER_KEY];
+
+    // Create VC
+    UIViewController *vc = [[NSClassFromString(viewControllerClassName) alloc] init];
+    vc.title = [data objectForKey:TITLE_KEY];
+
+    return vc;
 }
 @end

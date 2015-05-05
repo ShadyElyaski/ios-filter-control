@@ -6,9 +6,5 @@
 //  Copyright (c) 2012 Shady Elyaski. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
-@property (retain, nonatomic) IBOutlet UILabel *selectedIndex;
-
+@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @end

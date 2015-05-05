@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>88F798B1-2618-483D-BB6C-6E455F5F1B07</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SEFilterControl_Sample</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2114C6B37FDADEF947B1153B728E49375B2F4D7E</key>
+		<string>https://github.com/nicolasgoutaland/ios-filter-control.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SEFilterControl_Sample.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2114C6B37FDADEF947B1153B728E49375B2F4D7E</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/nicolasgoutaland/ios-filter-control.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2114C6B37FDADEF947B1153B728E49375B2F4D7E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2114C6B37FDADEF947B1153B728E49375B2F4D7E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ios-filter-control</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -14,49 +14,60 @@
 #import "SEFilterKnob.h"
 
 @implementation SEFilterKnob
-@synthesize handlerColor;
+static NSArray *observedValues = nil;
++ (void)initialize
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        observedValues = @[@"shadow", @"handlerColor", @"shadowColor"];
+    });
+}
 
+#pragma mark - Constructors
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        [self setHandlerColor:[UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1]];
+    if (self = [super initWithFrame:frame])
+    {
+        // Default configuration
+        _shadow       = SEFilterKnob_DEFAULT_SHADOW;
+        _shadowColor  = SEFilterKnob_DEFAULT_SHADOW_COLOR;
+        _handlerColor = SEFilterKnob_DEFAULT_HANDLER_COLOR;
+        
+        self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        for (NSString *keyPath in observedValues)
+        {
+            [self addObserver:self
+                   forKeyPath:keyPath
+                      options:0
+                      context:nil];
+        }
     }
+
     return self;
 }
 
--(void) setHandlerColor:(UIColor *)hc{
-    [handlerColor release];
-    handlerColor = nil;
-    
-    handlerColor = [hc retain];
-    [self setNeedsDisplay];
-}
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+#pragma mark - Drawing code
 - (void)drawRect:(CGRect)rect
 {
-    CGColorRef shadowColor = [UIColor colorWithRed:0 green:0 
-                                              blue:0 alpha:.4f].CGColor;
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    
-    //Draw Main Cirlce
-    
+    // Save current state before applying modifications
     CGContextSaveGState(context);
     
-    CGContextSetShadowWithColor(context, CGSizeMake(0, 7), 10.f, shadowColor);
-    
-    CGContextSetStrokeColorWithColor(context, handlerColor.CGColor);
+    // Draw Main Circle
+    if (_shadow)
+    {
+        CGColorRef shadowColor = _shadowColor.CGColor;
+        CGContextSetShadowWithColor(context, CGSizeMake(0, 7), 10.f, shadowColor);
+    }
+
+    CGContextSetStrokeColorWithColor(context, _handlerColor.CGColor);
     CGContextSetLineWidth(context, 11);
     CGContextStrokeEllipseInRect(context, CGRectMake(6.5f, 6, 22, 22));
     
     CGContextRestoreGState(context);
     
-    //Draw Outer Outline
+    // Draw Outer Outline
     
     CGContextSaveGState(context);
     
@@ -66,11 +77,10 @@
     
     CGContextRestoreGState(context);
     
-    //Draw Inner Outline
+    // Draw Inner Outline
     
     CGContextSaveGState(context);
     
-//    CGContextSetShadowWithColor(context, CGSizeMake(0, -4), 10.f, shadowColor);
     CGContextSetStrokeColorWithColor(context, [UIColor colorWithWhite:.5 alpha:.6f].CGColor);
     CGContextSetLineWidth(context, 1);
     CGContextStrokeEllipseInRect(context, CGRectMake(rect.origin.x+12.5f, rect.origin.y+12, 10, 10));
@@ -78,25 +88,41 @@
     CGContextRestoreGState(context);
     
     
-    CGFloat colors[8] = { 0,0, 0, 0,
-        0, 0, 0, .6};
+    CGFloat colors[8] = { 0, 0, 0,  0,
+                          0, 0, 0, .6};
+
     CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
-    CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
+    CGGradientRef gradient    = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
     
     CGContextSaveGState(context);
     CGContextAddEllipseInRect(context, CGRectMake(rect.origin.x+1.5f, rect.origin.y+1, 32, 32));
     CGContextClip(context);
     CGContextDrawLinearGradient (context, gradient, CGPointMake(0, 0), CGPointMake(0,rect.size.height), 0);
     
+    // Memory
     CGGradientRelease(gradient);
     CGColorSpaceRelease(baseSpace);
-    
+
+    // Restore previous state
     CGContextRestoreGState(context);
 }
 
--(void) dealloc{
-    [handlerColor release];
-    [super dealloc];
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([observedValues containsObject:keyPath])
+        [self setNeedsDisplay];
+}
+
+#pragma mark - Memory
+- (void)dealloc
+{
+    // Remove bindings
+    for (NSString *key in observedValues)
+    {
+        [self removeObserver:self
+                  forKeyPath:key];
+    }
 }
 
 @end

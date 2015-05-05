@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>Creation by code</string>
+		<key>viewController</key>
+		<string>Sample1ViewController</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Creation via Interface Builder</string>
+		<key>viewController</key>
+		<string>Sample2ViewController</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>UI Events</string>
+		<key>viewController</key>
+		<string>Sample3ViewController</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Data update</string>
+		<key>viewController</key>
+		<string>Sample4ViewController</string>
+	</dict>
+</array>
+</plist>

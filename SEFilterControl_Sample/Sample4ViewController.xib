@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Sample4ViewController">
+            <connections>
+                <outlet property="filterControl" destination="Bdz-y4-qZZ" id="oUQ-29-8OH"/>
+                <outlet property="filterLabel" destination="tqQ-Mr-bTL" id="Myr-wJ-x6h"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bdz-y4-qZZ" customClass="SEFilterControl">
+                    <rect key="frame" x="20" y="80" width="280" height="70"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="r38-ZA-swk"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="continuous" value="YES"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="progressColor">
+                            <color key="value" red="0.37555009680000001" green="1" blue="0.29384585419999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="handlerColor">
+                            <color key="value" red="0.080820425269999996" green="0.2540552116" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="filterValueChanged:" destination="-1" eventType="valueChanged" id="Rvx-ZE-m7h"/>
+                    </connections>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Bx-QO-qks">
+                    <rect key="frame" x="100" y="508" width="100" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="K6m-MK-e7c"/>
+                        <constraint firstAttribute="height" constant="40" id="Qgu-e2-mca"/>
+                    </constraints>
+                    <state key="normal" title="Reload data">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="refreshData" destination="-1" eventType="touchUpInside" id="TWM-to-AH6"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqQ-Mr-bTL">
+                    <rect key="frame" x="139" y="170" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" placeholder="YES" id="Ywv-mx-KKQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Bdz-y4-qZZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="72y-ha-O4N"/>
+                <constraint firstItem="tqQ-Mr-bTL" firstAttribute="top" secondItem="Bdz-y4-qZZ" secondAttribute="bottom" constant="20" id="8A7-LW-Iau"/>
+                <constraint firstAttribute="bottom" secondItem="1Bx-QO-qks" secondAttribute="bottom" constant="20" id="Ivk-He-Ihq"/>
+                <constraint firstItem="Bdz-y4-qZZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="Qrz-rA-Ucy"/>
+                <constraint firstAttribute="centerX" secondItem="tqQ-Mr-bTL" secondAttribute="centerX" id="auC-56-5Br"/>
+                <constraint firstAttribute="centerX" secondItem="1Bx-QO-qks" secondAttribute="centerX" constant="10" id="hbF-eG-RYG"/>
+                <constraint firstAttribute="trailing" secondItem="Bdz-y4-qZZ" secondAttribute="trailing" constant="20" id="iB8-VB-jxR"/>
+            </constraints>
+            <point key="canvasLocation" x="542" y="356"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
