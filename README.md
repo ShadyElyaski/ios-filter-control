@@ -21,7 +21,7 @@ __Cocoapods:__ pod 'SEFilterControl'
 
 __Manual__:
 
-1. In your XCode Project, take the *SEFilterControl.h and .m* & *SEFilterKnob.h and .m* from ios-filter-control folder and drag them into your project. 
+1. In your Xcode Project, take the *SEFilterControl.h and .m* & *SEFilterKnob.h and .m* from ios-filter-control folder and drag them into your project. 
 
 2. Start using this new UIControl Subclass!
 
